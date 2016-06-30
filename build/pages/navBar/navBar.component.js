@@ -40,7 +40,7 @@ System.register(['@angular/core', '@angular/common', '@angular/router', '../logi
                     core_1.Component({
                         selector: 'nav-bar',
                         templateUrl: 'app/pages/navBar/navBar.html',
-                        directives: [common_1.CORE_DIRECTIVES, router_1.ROUTER_DIRECTIVES,]
+                        directives: [common_1.CORE_DIRECTIVES, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [login_service_1.LoginService])
                 ], NavBar);

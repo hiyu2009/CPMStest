@@ -8,18 +8,14 @@
         </a>
       </div>
 
-<div class="navbar-collapse collapse">
+      <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a  href="" [routerLink]="['/login']" (click)="onClick()">
+            <a href="" [routerLink]="['/login']" (click)="onClick()">
                 <i class="glyphicon glyphicon-off"></i> {{loginService.checkLogin()? 'Logout' : 'Login'}}
-
               </a>
           </li>
         </ul>
-
       </div>
-
     </div>
-
   </nav>

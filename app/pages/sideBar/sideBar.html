@@ -7,8 +7,8 @@
             <a class="active" [routerLink]="['/']"><i class="fa fa-dashboard fa-fw"></i> HOME</a>
           </li>
 
-          <accordion [closeOthers] ="false">
-            <li class="nav-style">
+          <accordion [closeOthers] ="false" >
+            <li class="nav-style"  *ngIf="partnerMenuList.length > 0 && adminMenuList">
               <accordion-group>
 
                 <accordion-heading>
@@ -17,24 +17,23 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of partnerMenuList">
                   <li>
-                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
 
               </accordion-group>
             </li>
             <!--  사업자 관리 메뉴 -->
-            <li class="nav-style">
+            <li class="nav-style"  *ngIf="projectMenuList.length > 0 && adminMenuList">
               <accordion-group>
 
                 <accordion-heading>
                   <a href="#"><i class="fa fa-calendar fa-fw"></i> 프로젝트 관리<span class="fa arrow"></span></a>
-
                 </accordion-heading>
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of projectMenuList">
                   <li>
-                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
 
@@ -42,7 +41,7 @@
             </li>
             <!--  프로젝트 관리 메뉴 -->
 
-            <li class="nav-style">
+            <li class="nav-style" *ngIf="progressMenuList.length > 0 && adminMenuList">
               <accordion-group>
 
                 <accordion-heading>
@@ -51,7 +50,7 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of progressMenuList">
                   <li>
-                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -60,7 +59,7 @@
             </li>
             <!--  프로젝트 진행현황 메뉴 -->
 
-            <li class="nav-style">
+            <li class="nav-style" *ngIf="adminMenuList.length > 0 && adminMenuList">
               <accordion-group>
 
                 <accordion-heading>
@@ -69,7 +68,7 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of adminMenuList">
                   <li>
-                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->

@@ -1,4 +1,4 @@
-System.register(['@angular/core', '../login/services/login.service'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/common', '@angular/router', '../login/services/login.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,18 @@ System.register(['@angular/core', '../login/services/login.service'], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, login_service_1;
+    var core_1, common_1, router_1, login_service_1;
     var NavBar;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (login_service_1_1) {
                 login_service_1 = login_service_1_1;
@@ -34,7 +40,7 @@ System.register(['@angular/core', '../login/services/login.service'], function(e
                     core_1.Component({
                         selector: 'nav-bar',
                         templateUrl: 'app/pages/navBar/navBar.html',
-                        directives: []
+                        directives: [common_1.CORE_DIRECTIVES, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [login_service_1.LoginService])
                 ], NavBar);
