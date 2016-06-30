@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default topnav">
+  <div class="nav-bar">
+    <div class="navbar-header">
+      <!-- <a class="navbar-brand"  href="#" [routerLink]="['Home']"> -->
+        <a class="navbar-brand" [routerLink]="['/']" href="" >
+        <!-- <img width="20" height="20" src="../assets/image/image001.jpg" alt="Certiware Logo"> -->
+          Certiware
+        </a>
+      </div>
+
+<div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a  href="" [routerLink]="['/login']" (click)="onClick()">
+                <i class="glyphicon glyphicon-off"></i> {{loginService.checkLogin()? 'Logout' : 'Login'}}
+
+              </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>

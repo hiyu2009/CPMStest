@@ -1,0 +1,88 @@
+<!-- navbar-static-side -->
+  <div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+      <side-bar>
+        <ul class="nav in">
+          <li>
+            <a class="active" [routerLink]="['/']"><i class="fa fa-dashboard fa-fw"></i> HOME</a>
+          </li>
+
+          <accordion [closeOthers] ="false">
+            <li class="nav-style">
+              <accordion-group>
+
+                <accordion-heading>
+                    <a href="#"><i class="fa fa-globe fa-fw"></i> 사업자 관리<span class="fa arrow"></span></a>
+                </accordion-heading>
+
+                <ul class="nav nav-second-level" *ngFor="let menuList of partnerMenuList">
+                  <li>
+                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                  </li>
+                </ul>
+
+              </accordion-group>
+            </li>
+            <!--  사업자 관리 메뉴 -->
+            <li class="nav-style">
+              <accordion-group>
+
+                <accordion-heading>
+                  <a href="#"><i class="fa fa-calendar fa-fw"></i> 프로젝트 관리<span class="fa arrow"></span></a>
+
+                </accordion-heading>
+
+                <ul class="nav nav-second-level" *ngFor="let menuList of projectMenuList">
+                  <li>
+                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                  </li>
+                </ul>
+
+              </accordion-group>
+            </li>
+            <!--  프로젝트 관리 메뉴 -->
+
+            <li class="nav-style">
+              <accordion-group>
+
+                <accordion-heading>
+                  <a href="#"><i class="fa fa-signal fa-fw"></i> 프로젝트 진행현황<span class="fa arrow"></span></a>
+                </accordion-heading>
+
+                <ul class="nav nav-second-level" *ngFor="let menuList of progressMenuList">
+                  <li>
+                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                  </li>
+                </ul>
+                <!-- /.nav-second-level -->
+
+              </accordion-group>
+            </li>
+            <!--  프로젝트 진행현황 메뉴 -->
+
+            <li class="nav-style">
+              <accordion-group>
+
+                <accordion-heading>
+                  <a href="#"><i class="fa fa-user fa-fw"></i> 관리자 페이지<span class="fa arrow"></span></a>
+                </accordion-heading>
+
+                <ul class="nav nav-second-level" *ngFor="let menuList of adminMenuList">
+                  <li>
+                    <a href="#/flot">{{menuList.subMenuName}}</a>
+                  </li>
+                </ul>
+                <!-- /.nav-second-level -->
+
+              </accordion-group>
+            </li>
+            <!--  관리자 페이지 메뉴 -->
+
+          </accordion>
+        </ul>
+
+      </side-bar>
+
+    </div>
+    <!-- /.sidebar-collapse -->
+  </div>

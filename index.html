@@ -1,0 +1,57 @@
+<html>
+<head>
+  <base href=".">
+  <title>Angular 2 QuickStart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Custom CSS -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+  <!-- bootstrap  -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+
+<!-- 부트스트랩 3..3.6 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+  <!-- 부트스트랩 3.2 -->
+  <!--          <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+
+  <!-- ng2-bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/1.0.17/ng2-bootstrap.min.js"></script>
+  <!-- <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script> -->
+
+
+  <!--  제이쿼리 정의 -->
+  <script src="assets/js/jquery-1.11.0.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <!-- Vendor: Angular, followed by our custom Javascripts -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
+
+        <!-- Our Website Javascripts -->
+        <script src="assets/js/main.js"></script>
+
+
+  <!-- 1. Load libraries -->
+  <!-- Polyfill(s) for older browsers -->
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+
+  <!-- 2. Configure SystemJS -->
+  <script src="systemjs.config.js"></script>
+  <script>
+  System.import('build').catch(function(err){ console.error(err); });
+  </script>
+</head>
+
+<!-- 3. Display the application -->
+<body>
+  <my-app>Loading...</my-app>
+</body>
+</html>
