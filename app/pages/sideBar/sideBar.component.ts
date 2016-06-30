@@ -3,7 +3,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import { ACCORDION_DIRECTIVES } from 'ng2-accordion';
 
-import { MenuListModel } from './models/menuList.model';
 import { SelectMenuModel } from '../../common/models/selectMenu.model';
 import { LoginService } from '../login/services/login.service';
 
