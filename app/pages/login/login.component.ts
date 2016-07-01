@@ -18,7 +18,9 @@ export class Login{
   constructor (
                 private router: Router,
                 private loginService: LoginService
-              ) {}
+              ) {
+                this.userModel = new UserModel();
+              }
 
   onSubmit() {
     console.log("page user ID, PW : " + this.model);
