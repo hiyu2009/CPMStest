@@ -4,11 +4,14 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class LoginService {
+  private static ROLE_CODE: string = "4";
+
   token: string;
   private userIdModel = {'userId' : ''};
 
   constructor (private http:Http) {}
 
+  //아이디, 비밀번호 확인 후 토큰 송신
   sendCredentials(model) {
     let tokenUrl = 'http://localhost:8080/main/login';
     let headers = new Headers();
@@ -19,16 +22,17 @@ export class LoginService {
     return this.http.post(tokenUrl, JSON.stringify(model), {headers: headers});
   }
 
-  getLoginData(userId: string) {
+  //사용자의 권한에 따른 데이터, 코드를 송신
+  getLoginData(model) {
     let url = 'http://localhost:8080/main/selectLogin';
     let header = new Headers();
     header.append('Content-Type', 'application/json');
     header.append('Authorization', 'Bearer '+ localStorage.getItem("token"));
+    header.append('RoleCode', LoginService.ROLE_CODE);
 
-    console.log(header);
-    console.log(userId);
+    console.log(model.userId);
 
-    return this.http.post(url, userId, {headers: header});
+    return this.http.post(url, JSON.stringify(model), {headers: header});
 
     // let url="http://localhost:8080/rest/photo/user";
     // let header = new Headers ({'Content-Type' : 'application/json', 'Authorization': 'Bearer '+localStorage.getItem("token")});
