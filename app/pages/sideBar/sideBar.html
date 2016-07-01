@@ -12,12 +12,12 @@
               <accordion-group>
 
                 <accordion-heading>
-                    <a href="#"><i class="fa fa-globe fa-fw"></i> 사업자 관리<span class="fa arrow"></span></a>
+                    <a><i class="fa fa-globe fa-fw"></i>사업자 관리<span class="fa arrow"></span></a>
                 </accordion-heading>
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of partnerMenuList">
                   <li>
-                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
 
@@ -28,12 +28,12 @@
               <accordion-group>
 
                 <accordion-heading>
-                  <a href="#"><i class="fa fa-calendar fa-fw"></i> 프로젝트 관리<span class="fa arrow"></span></a>
+                  <a><i class="fa fa-calendar fa-fw"></i> 프로젝트 관리<span class="fa arrow"></span></a>
                 </accordion-heading>
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of projectMenuList">
                   <li>
-                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
 
@@ -45,12 +45,12 @@
               <accordion-group>
 
                 <accordion-heading>
-                  <a href="#"><i class="fa fa-signal fa-fw"></i> 프로젝트 진행현황<span class="fa arrow"></span></a>
+                  <a><i class="fa fa-signal fa-fw"></i> 프로젝트 진행현황<span class="fa arrow"></span></a>
                 </accordion-heading>
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of progressMenuList">
                   <li>
-                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -63,12 +63,12 @@
               <accordion-group>
 
                 <accordion-heading>
-                  <a href="#"><i class="fa fa-user fa-fw"></i> 관리자 페이지<span class="fa arrow"></span></a>
+                  <a><i class="fa fa-user fa-fw"></i> 관리자 페이지<span class="fa arrow"></span></a>
                 </accordion-heading>
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of adminMenuList">
                   <li>
-                    <a href="#/flot" [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->
