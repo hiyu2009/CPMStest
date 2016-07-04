@@ -4,6 +4,7 @@ import { CanDeactivateGuard } from './interfaces';
 import { Login } from './pages/login/login.component';
 import { Home } from './pages/home/home.component';
 import { PartnerAdd } from './pages/partner/partnerAdd/partnerAdd.component';
+import { PartnerUpdate } from './pages/partner/partnerUpdate/partnerUpdate.component';
 import { ProjectRoutes } from './pages/project/route/project.routes'
 
 export const routes: RouterConfig = [
@@ -11,6 +12,7 @@ export const routes: RouterConfig = [
   { path: 'login', component: Login },
   { path: 'home', component: Home },
   { path: 'partner/insert', component: PartnerAdd },
+  { path: 'partner/update', component: PartnerUpdate },
   ...ProjectRoutes
 ];
 export const APP_ROUTER_PROVIDERS = [
