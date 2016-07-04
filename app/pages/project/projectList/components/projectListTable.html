@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <tr>
+    <th *ngFor="let header of tableHeaders">{{header}}</th>
+  </tr>
+  <tr *ngIf="tableRowModels.length > 0" *ngFor="let projectModel of tableRowModels" (click)="onRowClick(projectModel)">
+    <td>{{projectModel.projectName}}</td>
+    <td>{{projectModel.partnerName}}</td>
+    <td>{{projectModel.contractAmount}}</td>
+    <td>{{projectModel.outsourcingAmount}}</td>
+    <td>{{projectModel.netAmount}}</td>
+    <td>{{projectModel.startDate}}</td>
+    <td>{{projectModel.endDate}}</td>
+  </tr>
+  <tr *ngIf="!tableRowModels.length < 0">
+    <td colspan="7">등록된 프로젝트 리스트가 없습니다.</td>
+  </tr>
+</table>

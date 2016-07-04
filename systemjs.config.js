@@ -9,14 +9,16 @@
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       'node_modules/rxjs',
-    'ng2-accordion': 'node_modules/ng2-accordion'
+    'ng2-accordion':              'node_modules/ng2-accordion',
+    'moment':                     'node_modules/moment/moment'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'build':                        { main: 'main.js',  defaultExtension: 'js' },
+    'build':                      { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
-    "ng2-accordion": { "main": "index.js", "defaultExtension": "js" }
+    'ng2-accordion':              { main: "index.js", defaultExtension: "js" },
+    'moment':                     { main: 'moment.js', defaultExtension: 'js'}
   };
   var ngPackageNames = [
     'common',
@@ -30,6 +32,18 @@
     'router-deprecated',
     'upgrade',
   ];
+
+  var config = {
+    map: map,
+    packages: packages,
+    paths: {
+      'moment': 'node_modules/moment/moment.js'
+    },
+    meta: {
+      'moment': { 'format': 'global' }
+    },
+  }
+  
   // Individual files (~300 requests):
   function packIndex(pkgName) {
     packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };

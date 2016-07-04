@@ -7,29 +7,29 @@
       <form role="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>사업자 명 </label>
-          <input class="form-control" placeholder="partner name" [(ngModel)]="model.partnerId" required>
+          <input class="form-control" placeholder="partner name" [(ngModel)]="partnerModel.partnerName" required>
         </div>
 
         <div class="form-group">
           <label>사업자 번호</label>
-          <input class="form-control" placeholder="partner num" [(ngModel)]="model.businessNumber" required>
+          <input class="form-control" placeholder="business num" [(ngModel)]="partnerModel.businessNumber" required>
           <p style="color:red;">프리랜서의 경우는 주민번호</p>
         </div>
 
         <div class="form-group">
           <label>거래 구분</label>
-          <select class="form-control" [(ngModel)]="model.businessCode">
-            <option [value]="model.businessCode" *ngFor="let businessCode of partnerAdd">{{ model.businessCode }} </option>
+          <select class="form-control" [(ngModel)]="partnerModel.partnerCode" required>
+            <option *ngFor="let partnerCodeModel of partnerCodeModels"  [value]="partnerCodeModel.partnerCode">{{ partnerCodeModel.description }} </option>
             <!-- <option value="매입 ">매입 </option> -->
           </select>
         </div>
-
+<!--
+<select (change)="onChange($event.target.value)"> <option *ngFor="let i of devices">{{i}}</option> </select> onChange(deviceValue) { console.log(deviceValue); } -->
         <div class="form-group">
           <label>사업자 구분</label>
-          <select class="form-control" [(ngModel)]="model.partnerCode">
-            <option value="개인">개인 </option>
-            <option value="법인">법인 </option>
-            <option value="프리 ">프리 </option>
+          <select class="form-control" [(ngModel)]="partnerModel.businessCode" required>
+              <option *ngFor="let businessCodeModel of businessCodeModels" [value]="businessCodeModel.businessCode" >{{ businessCodeModel.description }} </option>
+
           </select>
         </div>
 

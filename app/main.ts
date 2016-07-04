@@ -8,4 +8,4 @@ import { APP_ROUTER_PROVIDERS } from './app.routes';
 bootstrap(AppComponent, [
   APP_ROUTER_PROVIDERS,
   provide(APP_BASE_HREF, {useValue: '/'})
-]);
+]).catch(err => console.error(err));

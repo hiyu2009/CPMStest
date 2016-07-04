@@ -1,36 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-1 col-sm-1 col-md-2">
-      <select class="form-control" [(ngModel)]="deptSelect">
+      <select class="form-control" [(ngModel)]="deptSelect.deptCode">
         <option  selected="selected">부서</option>
-        <option *ngFor="let deptModel of deptCodeModels" [value]="deptModel">{{deptModel.deptName}}</option>
+        <option *ngFor="let deptModel of deptCodeModels" [value]="deptModel.deptCode">{{deptModel.deptName}}</option>
       </select>
     </div>
     <div class="col-xs-1 col-sm-1 col-md-2">
-      <select class="form-control" [(ngModel)]="searchFilter">
-        <option  selected="selected">구분</option>
-        <option (value)=1 selected>프로젝트명</option>
-        <option (value)=2>매출처</option>
+      <select class="form-control" [(ngModel)]="selectFilter">
+        <option  selected>구분</option>
+        <option [value]=1>프로젝트명</option>
+        <option [value]=2>매출처</option>
       </select>
     </div>
     <div class="form-group col-xs-3 col-sm-3 col-md-6">
       <input type="text" class="form-control" placeholder="조회 데이터를 입력해 주세요" [(ngModel)]="searchValue">
-      {{this.searchValue}}
     </div>
-    <div class="col-xs-2 col-sm-2 col-md-1">
+    <div class="col-xs-2 col-sm-2 col-md-2">
       <button type="button" class="btn btn-default" (click) = "searchData()">조회</button>
-    </div>
-    <div class="col-xs-2 col-sm-2 col-md-1">
-      <button type="button" class="btn btn-danger">등록</button>
     </div>
   </div>
   <div class="row">
     <!-- <table-list [(ngModel)]="pjtListModels" table-headers="tableHeaders" table-rowModels="pjtListModels" detail-routePage="project/detail" mainPageName="project"></table-list> -->
-    <table class="table table-hover">
+    <project-list-table [table-headers]="tableHeaders" [table-rowModels]="pjtListModels"></project-list-table>
+    <!-- <table class="table table-hover">
       <tr>
         <th *ngFor="let header of tableHeaders">{{header}}</th>
       </tr>
-      <tr *ngFor="let projectModel of pjtListModels" (click)="onRowClick(projectModel)">
+      <tr *ngIf="pjtListModels.length > 0" *ngFor="let projectModel of pjtListModels" (click)="onRowClick(projectModel)">
         <td>{{projectModel.projectName}}</td>
         <td>{{projectModel.partnerName}}</td>
         <td>{{projectModel.contractAmount}}</td>
@@ -39,6 +36,9 @@
         <td>{{projectModel.startDate}}</td>
         <td>{{projectModel.endDate}}</td>
       </tr>
-    </table>
+      <tr *ngIf="!pjtListModels.length < 0">
+        <td colspan="7">등록된 프로젝트 리스트가 없습니다.</td>
+      </tr>
+    </table> -->
   </div>
 </div>
