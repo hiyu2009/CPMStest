@@ -1,10 +1,12 @@
 import { RouterConfig }          from '@angular/router';
-import { ProjectList }     from '../projectList/projectList.component';
-import { ProjectDetail }   from '../projectDetail/projectDetail.component';
+import { ProjectList }           from '../projectList/projectList.component';
+import { ProjectDetail }         from '../projectDetail/projectDetail.component';
+import { ProjectInsert }         from '../projectInsert/projectInsert.component';
 
 export const ProjectRoutes: RouterConfig = [
   { path: 'project/selectList',  component: ProjectList },
-  { path: 'project/selectDetail/:id', component: ProjectDetail }
+  { path: 'project/selectDetail/:id', component: ProjectDetail },
+  { path: 'project/insertProject', component: ProjectInsert }
 ];
 
 

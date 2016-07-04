@@ -1,3 +1,4 @@
+/// <reference path="../../../../typings/tsd.d.ts"/>
 
 import {Component, ViewContainerRef, Input, Output, EventEmitter, AfterViewInit} from '@angular/core';
 import {NgIf, NgFor, NgClass, NgModel, FORM_DIRECTIVES, ControlValueAccessor} from '@angular/common';

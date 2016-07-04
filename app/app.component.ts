@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
@@ -20,6 +20,10 @@ import { ProjectListService } from './pages/project/projectList/services/project
 })
 export class AppComponent {
   constructor (private loginService: LoginService) {}
+
+  ngOnDestroy(){
+    this.loginService.logout();
+  }
 }
 
 // <router-outlet></router-outlet>
