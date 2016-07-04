@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { PartnerModel } from '../../../common/models/partner.model';
-// import { PartnerCodeModel } from '../../../common/models/partnerCode.model';
+import { PartnerCodeModel } from '../../../common/models/partnerCode.model';
+import { BusinessCodeModel } from '../../../common/models/businessCode.model';
+import { ResultModel } from '../../../common/models/result.model';
+
 import { PartnerAddService } from './services/partnerAdd.service';
 
 import { ROUTER_DIRECTIVES } from '@angular/router';
@@ -14,46 +17,42 @@ import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
   styleUrls: ['./app/pages/partner/css/partner.css']
 })
 export class PartnerAdd {
-  private model = { 'partnerId':'', 'businessNumber':'', 'businessCode':'', 'partnerCode':'' }
-  private partnerModel : PartnerModel;
+  private model = { 'partner ID':'', 'businessNumber':'' }
+  private partnerModel : PartnerModel = new PartnerModel();
+
+  private partnerCodeModels : PartnerCodeModel[];
+  private businessCodeModels : BusinessCodeModel[];
+
+
+  private resultModel : ResultModel;
 
   constructor( private partnerAddService : PartnerAddService){
 
-  }
+    this.partnerCodeModels = JSON.parse(localStorage.getItem("currentUserData")).partnerCodeModels;
+    this.businessCodeModels = JSON.parse(localStorage.getItem("currentUserData")).businessCodeModels;
 
 
-  
+  };
+
+//4가지 등록 정보 입력 후 데이터들을 배열 형태로 넘길수 있게 맵핑
   onSubmit() {
-    console.log("page partner ID, businessNumber, : " + this.model);
-    this.partnerAddService.sendCredentials(this.model).subscribe(
-      data => {
-        let jsonToken = JSON.parse(JSON.stringify(data))._body;
-
-        console.log("get token success!, token: " + jsonToken);
-        //localStroage에
-        localStorage.setItem("token", jsonToken);
-        localStorage.setItem("partnerId", this.model.partnerId);
-        this.partnerAddService.getPartnerData(localStorage.getItem("partnerId")).subscribe(
-          data => {
-            console.log("get Partner data : " + JSON.parse(JSON.stringify(data))._body);
-            localStorage.setItem("currentUserData", JSON.parse(JSON.stringify(data))._body);
-
-            this.partnerModel = JSON.parse(localStorage.getItem("currentUserData")).partnerModel;
-            // this.PartnerCodeModel = JSON.parse(localStorage.getItem("currentUserData")).partnerCodeModels;
-
-            // for(let partner of this.PartnerModel){
-            //   console.log(partnerCode.pescription);
-            // }
-
-            // localStorage.setItem("partnerId", this.partnerModel.partnerId);
-            // localStorage.setItem("businessNumber", this.partnerModel.businessNumber);
-            localStorage.setItem("businessCode", this.partnerModel.businessCode);
-            localStorage.setItem("partnerCode", this.partnerModel.partnerCode);
+    //alert(JSON.stringify(this.partnerModel));
+      this.partnerAddService.getPartnerData(this.partnerModel).subscribe(
+        //통신의 유무만 확인
+        data => {
+          this.resultModel = JSON.parse(JSON.parse(JSON.stringify(data))._body);
+          if(this.resultModel.result){
+            console.log("성공");
           }
-        ),
-        error => console.log(error)
+          else{
+            console.log("실패" + this.resultModel.message);
+
+          }
+
+        }
+      ),
+      error => console.log(error);
       }
-    ),
-    error => console.log(error)
-  }
+
+
 }

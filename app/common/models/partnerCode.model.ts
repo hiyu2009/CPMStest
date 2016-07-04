@@ -1,5 +1,5 @@
 export class PartnerCodeModel {
   public partnerCode: string;
-  public pescription: string;
+  public description: string;
   public priority: number;
 }
