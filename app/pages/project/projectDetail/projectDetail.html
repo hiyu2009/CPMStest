@@ -1,8 +1,8 @@
 <wrapper>
     <div class="row">
         <div class="col-lg-12 container">
-            <h1 class="page-header">프로젝트 상세</h1>
-            <button *ngIf="userDeptCode == pjtDetailModel.projectModel.deptCode" (click)="goToModify()">편집</button>
+            <h1 class="page-header">프로젝트 상세 <button class="btn btn-default btn-sm pull-right" *ngIf="userDeptCode == pjtDetailModel.projectModel.deptCode" (click)="goToModify()">편집</button></h1>
+
             <ol class="breadcrumb">
                 <li><a [routerLink]="['/project/selectList']">프로젝트</a></li>
                 <li><a [routerLink]="['/project/selectDetail/'+pjtDetailModel.projectModel.projectId]">상세조회</a></li>

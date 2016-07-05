@@ -13,8 +13,8 @@
       <tr>
         <th *ngFor="let header of tableHeaders">{{header}}</th>
       </tr>
-      <tr *ngIf="tableRowModels.length > 0" *ngFor="let rowModel of tableRowModels | async" (click)="onRowClick(projectModel)">
-        <td>{{rowModel.deptCode}}</td>
+      <tr *ngIf="tableRowModels.length > 0" *ngFor="let rowModel of tableRowModels | async" (click)="onRowClick(rowModel)">
+        <td>{{rowModel.projectName}}</td>
         <td>{{rowModel.partnerName}}</td>
         <td>{{rowModel.contractAmount  | currency:'KRW':true}} </td>
         <td>{{rowModel.outsourcingAmount | currency:'KRW':true}}</td>
