@@ -18,7 +18,7 @@ import { ProjectListService } from './pages/project/projectList/services/project
     <router-outlet></router-outlet>
   `
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy{
   constructor (private loginService: LoginService) {}
 
   ngOnDestroy(){

@@ -9,9 +9,4 @@ export class SelectListModel {
   public startDate: Date;
   public endDate: Date;
   public deptCode: string;
-
-  modelInit(){
-    this.projectId = 0;
-    this.projectName = '';
-  }
 }

@@ -1,10 +1,69 @@
-<div class="container" [(ngModel)]="pjtDetailModel">
-  <div class="row">
-    <div class="col-xs-3 col-sm-3 col-md-3">
-      <p> 프로젝트 이름</p>
+<wrapper>
+    <div class="row">
+        <div class="col-lg-12 container">
+            <h1 class="page-header">프로젝트 상세</h1>
+            <button *ngIf="userDeptCode == pjtDetailModel.projectModel.deptCode" (click)="goToModify()">편집</button>
+            <ol class="breadcrumb">
+                <li><a [routerLink]="['/project/selectList']">프로젝트</a></li>
+                <li><a [routerLink]="['/project/selectDetail/'+pjtDetailModel.projectModel.projectId]">상세조회</a></li>
+            </ol>
+            <div class="panel panel-info">
+                <div class="panel-heading"><strong>프로젝트 정보</strong></div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>프로젝트 명 </label>
+                        {{pjtDetailModel.projectModel.projectName}}
+                    </div>
+
+                    <div class="form-group">
+                        <label>매출처</label>
+                        {{pjtDetailModel.projectModel.partnerId}}
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>시작일</label>
+                        {{pjtDetailModel.projectModel.startDate}}
+                    </div>
+
+                    <div class="form-group">
+                        <label>종료일</label>
+                        {{pjtDetailModel.projectModel.endDate}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-danger">
+                <div class="panel-heading"><strong>프로젝트 금액 정보</strong></div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label> 계약 금액 </label>
+                        {{pjtDetailModel.projectModel.contractAmount | currency:'KRW':true}}
+
+                    </div>
+                    <div class="form-group">
+                        <label> 외주 금액 </label>
+                        {{pjtDetailModel.projectModel.outsourcingAmount | currency:'KRW':true}}
+                    </div>
+                    <div class="form-group">
+                        <label> 공급 가액 </label>
+                        {{pjtDetailModel.projectModel.supplyAmount | currency:'KRW':true}}
+                    </div>
+
+                    <div class="form-group">
+                        <label> 부가 세액 </label>
+                        {{pjtDetailModel.projectModel.vtaAmount | currency:'KRW':true}}
+                    </div>
+
+                    <div class="form-group">
+                        <label> 순 매출 </label>
+                        {{pjtDetailModel.projectModel.netAmount | currency:'KRW':true}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="col-xs-9 col-sm-9 col-md-9">
-      {{pjtDetailModel.projectModel.projectName}}
-    </div>
-  </div>
-</div>
+
+</wrapper>

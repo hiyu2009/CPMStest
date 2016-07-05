@@ -21,8 +21,8 @@ export class ProjectList implements OnInit {
     private data:Observable<any>;
     private dataObserver:Observer<any>;
 
-    private deptCodeModels:DeptCodeModel[] = [];
-    private pjtListModels:SelectListModel[] = [];
+    private deptCodeModels:DeptCodeModel[];
+    private pjtListModels:SelectListModel[];
     private tableHeaders:string[] = ['프로젝트 명', '매출처', '계약금액', '외주금액', '순매출', '시작일', '종료일'];
     private deptSelect:DeptCodeModel;
     private selectFilter:any;
@@ -33,7 +33,8 @@ export class ProjectList implements OnInit {
                 private pjtListService:ProjectListService) {
         this.deptSelect = new DeptCodeModel();
         this.searchModel = new SelectListModel();
-
+        this.deptCodeModels = [];
+        this.pjtListModels = [];
         this.data = new Observable(observer => this.dataObserver = observer);
     }
 
@@ -48,11 +49,11 @@ export class ProjectList implements OnInit {
                     console.log("return data check : ");
                     console.log(data);
 
-                    // this.pjtListModels = data;
+                    this.pjtListModels = data;
                     console.log("pjtListModel <- data : ");
                     console.log(this.pjtListModels);
 
-                    this.dataObserver.next(data);
+                    this.dataObserver.next(this.pjtListModels);
                     console.log("data insert success! ");
                     console.log(this.dataObserver);
                 }, error => {
@@ -121,10 +122,10 @@ export class ProjectList implements OnInit {
         this.pjtListService.getList(this.searchModel).subscribe(
             data => {
                 //dataObserver에 조회된 데이터를 반영해서 테이블을 리로드한다.
-                this.dataObserver.next(data);
+                this.pjtListModels = data;
+                this.dataObserver.next(this.pjtListModels);
             }, error => {
                 console.log(error);
-                alert("데이터를 조회 할 수 없습니다!");
                 this.pjtListModels = [];
             }
         )

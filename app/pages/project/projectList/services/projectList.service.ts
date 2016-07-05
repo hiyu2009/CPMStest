@@ -4,16 +4,16 @@ import { SelectListModel } from '../models/selectList.model';
 
 @Injectable()
 export class ProjectListService {
-  private static SERVER_DOMAIN: string = "http://localhost:8080/";
-  private result: SelectListModel;
+  private SERVER_DOMAIN: string = "http://localhost:8080/";
+  private result: SelectListModel[];
 
   constructor(private http: Http) {
-    this.result = new SelectListModel()
+    this.result = [];
   }
 
   //등록된 프로젝트의 목록을 가져옴
   getList(selectModel: SelectListModel) {
-    let url = ProjectListService.SERVER_DOMAIN + "project/selectList";
+    let url = this.SERVER_DOMAIN + "project/selectList";
     let header = new Headers();
     header.append('Content-Type', 'application/json');
     header.append('Authorization', 'Bearer '+ localStorage.getItem("token"));

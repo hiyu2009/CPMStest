@@ -1,0 +1,83 @@
+<wrapper>
+    <div class="row">
+        <div class="col-lg-12 container">
+            <h1 class="page-header">프로젝트 수정</h1>
+
+            <ol class="breadcrumb">
+                <li><a [routerLink]="['/project/selectList']">프로젝트</a></li>
+                <li><a [routerLink]="['/project/updateProject/'+pjtUpdateModel.projectId]">수정</a></li>
+            </ol>
+
+            <form role="form" (ngSubmit)="onSubmit()">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><strong>프로젝트 정보</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>프로젝트 명 </label>
+                            <input class="form-control" placeholder="project name" [(ngModel)]="pjtUpdateModel.projectName" value="pjtUpdateModel.projectName" required>
+
+                    </div>
+                        <div class="form-group">
+                            <label>매출처</label>
+                            <select class="form-control" [(ngModel)]="pjtUpdateModel.partnerId" *ngIf="partnerListModel.length > 0">
+                                <option *ngFor="let partnerModel of partnerListModel" [value]="partnerModel.partnerId" >{{ partnerModel.partnerName }} </option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>시작일</label>
+                            <datepicker [(ngModel)]="pjtUpdateModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
+                            <p style="color:red;" *ngIf="submitToggle && pjtUpdateModel.startDate == null">프로젝트의 시작일을 선택해 주세요</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>종료일</label>
+                            <datepicker [(ngModel)]="pjtUpdateModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date="" required></datepicker>
+                            <p style="color:red;" *ngIf="submitToggle && pjtUpdateModel.endDate == null"> 프로젝트의 종료일을 선택해 주세요</p>
+                            <p style="color:red;" *ngIf="pjtUpdateModel.startDate > pjtUpdateModel.endDate">시작일이 종료일보다 클수는 없습니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-danger">
+                    <div class="panel-heading"><strong>프로젝트 금액 정보</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label> 계약 금액 </label>
+                            <input type="number" class="form-control" placeholder="" [(ngModel)]="pjtUpdateModel.contractAmount" value="pjtUpdateModel.projectName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label> 외주 금액 </label>
+                            <input type="number" class="form-control" placeholder="" [(ngModel)]="pjtUpdateModel.outsourcingAmount" value="pjtUpdateModel.outsourcingAmount" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label> 공급 가액 </label>
+                            <input type="number" class="form-control" placeholder="" [(ngModel)]="pjtUpdateModel.supplyAmount" value="pjtUpdateModel.supplyAmount" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label> 부가 세액 </label>
+                            <input type="number" class="form-control" placeholder="" [(ngModel)]="pjtUpdateModel.vtaAmount" value="pjtUpdateModel.vtaAmount" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label> 순 매출 </label>
+                            <input type="number" class="form-control" placeholder="" [(ngModel)]="pjtUpdateModel.netAmount" value="pjtUpdateModel.netAmount" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 등록 버튼 onSubmit() -->
+                <button type="submit" class="btn btn-lg btn-primary btn-block">수정</button>
+                <button type="button" class="btn btn-lg btn-danger btn-block" (click)="onDelData()">삭제</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</wrapper>
