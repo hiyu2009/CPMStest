@@ -12,24 +12,5 @@
       <option [value]=2>매출처</option>
     </select>
   </div>
-  <!-- <table-list [(ngModel)]="pjtListModels" table-headers="tableHeaders" table-rowModels="pjtListModels" detail-routePage="project/detail" mainPageName="project"></table-list> -->
   <project-list-table [table-headers]="tableHeaders" [table-rowModels]="data" (searchEvent)="searchData($event, deptSelect, selectFilter)"></project-list-table>
-    <!-- <project-list-table></project-list-table> -->
-    <!-- <table class="table table-hover">
-      <tr>
-        <th *ngFor="let header of tableHeaders">{{header}}</th>
-      </tr>
-      <tr *ngIf="pjtListModels.length > 0" *ngFor="let projectModel of pjtListModels" (click)="onRowClick(projectModel)">
-        <td>{{projectModel.projectName}}</td>
-        <td>{{projectModel.partnerName}}</td>
-        <td>{{projectModel.contractAmount}}</td>
-        <td>{{projectModel.outsourcingAmount}}</td>
-        <td>{{projectModel.netAmount}}</td>
-        <td>{{projectModel.startDate}}</td>
-        <td>{{projectModel.endDate}}</td>
-      </tr>
-      <tr *ngIf="!pjtListModels.length < 0">
-        <td colspan="7">등록된 프로젝트 리스트가 없습니다.</td>
-      </tr>
-    </table> -->
 </div>

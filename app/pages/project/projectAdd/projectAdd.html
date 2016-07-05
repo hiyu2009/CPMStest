@@ -1,0 +1,43 @@
+<wrapper>
+    <div class="row">
+        <div class="col-lg-12 container">
+            <h1 class="page-header">프로젝트 신규 등록</h1>
+
+            <form role="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>프로젝트 명 </label>
+                    <input class="form-control" placeholder="partner name" [(ngModel)]="addPjtModel.ProjectName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>매출처</label>
+                    <select class="form-control" [(ngModel)]="addPjtModel.partnerId" required>
+
+                        <option *ngFor="let partnerModel of partnerListModel" [value]="partnerModel.partnerId" >{{ partnerModel.partnerName }} </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>시작일</label>
+                    <datepicker [(ngModel)]="startDate" view-format="DD.MM.YYYY" model-format="YYYY-MM-DD" init-date="2017-05-12"></datepicker>
+                    <!--<p style="color:red;">프리랜서의 경우는 주민번호</p>-->
+                </div>
+
+                <div class="form-group">
+                    <label>종료일</label>
+                    <datepicker [(ngModel)]="endDate" view-format="DD.MM.YYYY" model-format="YYYY-MM-DD" init-date="2017-05-12"></datepicker>
+                    <!--<p style="color:red;">프리랜서의 경우는 주민번호</p>-->
+                </div>
+
+                <!-- 등록 버튼 onSubmit() -->
+                <button type="submit" class="btn btn-lg btn-danger btn-block">등록</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</wrapper>

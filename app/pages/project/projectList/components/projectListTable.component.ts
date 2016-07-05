@@ -6,12 +6,8 @@ import { Component,
 import { Control,
          FORM_DIRECTIVES } from '@angular/common';
 import { Observable }      from 'rxjs/Observable';
-// import { LoginService }    from '../../../login/services/login.service';
-import { SelectListModel } from '../models/selectList.model';
-// import { DeptCodeModel }   from '../../../../common/models/deptCode.model';
 import { ROUTER_DIRECTIVES,
          Router }          from '@angular/router';
-// import { ProjectListService } from '../services/projectList.service';
 
 @Component({
   selector: 'project-list-table',
@@ -21,7 +17,6 @@ import { ROUTER_DIRECTIVES,
 export class ProjectListTable implements OnInit {
   @Input('table-headers') tableHeaders: Object;
   @Input('table-rowModels') tableRowModels: Observable<any>;
-  // @Input()  tableRowModels: Observable<any>
   @Output() searchEvent: EventEmitter<any> = new EventEmitter();
 
   private searchBox:Control = new Control();
@@ -40,9 +35,6 @@ export class ProjectListTable implements OnInit {
   ngOnInit(){
     console.log("table-header: " + typeof this.tableHeaders);
     console.log("table-row: " + typeof this.tableRowModels);
-
-    // this.tableHeaders = [];
-    // this.tableRowModels = [];
   }
 
   onRowClick(colData) {
@@ -52,7 +44,8 @@ export class ProjectListTable implements OnInit {
   }
 
   onInsertClick(){
-    let link = ['/project/insertProject', null];
+    console.log("projectTable.component.ts : insertBtn click!");
+    let link = ['/project/insertProject'];
     this.router.navigate(link);
   }
 }

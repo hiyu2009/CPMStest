@@ -5,10 +5,11 @@ import { SelectDetailModel } from './models/selectDetail.model';
 
 @Component ({
   selector: 'project-detail',
+  providers: [ProjectDetailService],
   templateUrl: 'app/pages/project/projectDetail/projectDetail.html'
 })
 export class ProjectDetail implements OnInit{
-  private sub: any;
+  private sub: any = null;
   private pjtIDModel = {'projectId': ''};
   private pjtDetailModel: SelectDetailModel;
 
@@ -21,6 +22,7 @@ export class ProjectDetail implements OnInit{
 
      this.sub = this.route.params.subscribe(params => {
        this.pjtIDModel.projectId = params['id']; // (+) converts string 'id' to a number
+         alert(this.pjtIDModel.projectId);
        this.service.projectIdByData(this.pjtIDModel).subscribe(
          data => {
            console.log("detail.get " + JSON.parse(JSON.parse(JSON.stringify(data))._body));

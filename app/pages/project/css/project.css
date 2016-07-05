@@ -1,0 +1,13 @@
+* {
+  margin: 0 auto;
+  padding: 0px;
+}
+.page-header{
+  border-bottom-width: 100%;
+}
+.container {
+  float: left;
+  top: 15;
+  left: 30%;
+  width: 100%;
+}
