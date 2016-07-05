@@ -23,6 +23,7 @@ export class SideBar {
   constructor(private loginService: LoginService) {
     if(localStorage.getItem("currentUserData") != null){
       this.selMenuModel = JSON.parse(localStorage.getItem("currentUserData")).selectMenuModels;
+
       for(let menuModel of this.selMenuModel){
         if(menuModel.showYN == "Y"){
           switch(menuModel.mainMenuId){
@@ -41,13 +42,6 @@ export class SideBar {
           }
         }
       }
-
-
-      // if(menuModel.mainMenuId == 1 && menuModel.mainMenuName == "메인"){
-      //   this.mainMenuModel.push(menuModel);
-      // }else{
-      //   this.sideMenuModel.push(menuModel);
-      // }
     }
 
     console.log(this.partnerMenuList);

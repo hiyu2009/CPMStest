@@ -17,7 +17,7 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of partnerMenuList">
                   <li>
-                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]" routerLinkActive="active">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
 
@@ -33,7 +33,7 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of projectMenuList">
                   <li>
-                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]" routerLinkActive="active">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
 
@@ -50,7 +50,7 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of progressMenuList">
                   <li>
-                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]" routerLinkActive="active">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -68,7 +68,7 @@
 
                 <ul class="nav nav-second-level" *ngFor="let menuList of adminMenuList">
                   <li>
-                    <a [routerLink]="[menuList.requestURL]">{{menuList.subMenuName}}</a>
+                    <a [routerLink]="[menuList.requestURL]" routerLinkActive="active">{{menuList.subMenuName}}</a>
                   </li>
                 </ul>
                 <!-- /.nav-second-level -->

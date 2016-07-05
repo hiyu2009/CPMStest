@@ -1,10 +1,10 @@
 import { Component,
          OnInit }             from '@angular/core';
 import { Control,
-         FORM_DIRECTIVES }    from '@angular/common';
+         FORM_DIRECTIVES } from '@angular/common';
 import 'rxjs/Rx';
-import { Observable }         from 'rxjs/Observable';
-import { Observer }           from 'rxjs/Observer';
+import { Observable }        from 'rxjs/Observable';
+import { Observer }          from 'rxjs/Observer';
 // import { TableListComponent } from '../../../common/components/table/table-list/table-list.component';
 import { ProjectListTable }   from './components/projectListTable.component';
 import { LoginService }       from '../../login/services/login.service';
@@ -94,11 +94,9 @@ export class ProjectList implements OnInit{
     console.log("deptCode : " + this.deptSelect.deptCode + " Filter : " + this.selectFilter + " string: " + this.searchValue);
 
     //부서의 코드값 적용
-    if(this.deptSelect && this.deptSelect != null && this.deptSelect.deptCode != "-1"){
+    if(this.deptSelect && this.deptSelect != null){
       this.searchModel.deptCode = this.deptSelect.deptCode;
       console.log("search - deptCode : " + this.deptSelect.deptCode);
-    } else {
-      this.searchModel.deptCode = null;
     }
 
     switch(this.selectFilter){
@@ -121,7 +119,7 @@ export class ProjectList implements OnInit{
 
     this.pjtListService.getList(this.searchModel).subscribe(
       data => {
-        //dataObserver에 조회된 데이터를 반영해서
+        //dataObserver에 조회된 데이터를 반영해서 테이블을 리로드한다.
         this.dataObserver.next(data);
       }, error => {
         console.log(error);
