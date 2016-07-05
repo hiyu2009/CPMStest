@@ -26,18 +26,16 @@ interface CalendarDate {
   <div class="ng-datepicker" *ngIf="isStatic || isOpened" [ngClass]="{ static: isStatic }">
     <div class="controls">
       <div class="left">
-        년
         <!-- <i class="fa fa-backward prev-year-btn" (click)="prevYear()"></i> -->
         <!-- <i class="fa fa-angle-left prev-month-btn" (click)="prevMonth()"></i>-->
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" (click)="prevYear()"></span>
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" (click)="prevMonth()"></span>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" (click)="nextYear()"></span>
       </div>
       <span class="date">
         {{ dateValue }}
       </span>
       <div class="right">
-        월
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" (click)="nextYear()"></span>
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" (click)="prevMonth()"></span>
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" (click)="nextMonth()"></span>
         <!-- <i class="fa fa-angle-right next-month-btn" (click)="nextMonth()"></i> -->
         <!-- <i class="fa fa-forward next-year-btn" (click)="nextYear()"></i> -->
@@ -65,7 +63,7 @@ interface CalendarDate {
   }
 
   .ng-datepicker {
-    position: fixed;
+    position: absolute;
     z-index: 990;
     width: 250px;
     background: #fff;
@@ -315,7 +313,7 @@ export class DatePicker implements ControlValueAccessor, AfterViewInit {
     e.preventDefault();
     if (this.isSelected(date)) return;
 
-    let selectedDate = moment(date.day + '.' + date.month + '.' + date.year, 'DD.MM.YYYY');
+    let selectedDate = moment(date.year + ' - ' + date.month + '-' + date.day, 'YYYY-MM-DD');
     this.setValue(selectedDate);
     this.closeDatepicker();
     this.changed.emit(selectedDate.toDate());
@@ -328,7 +326,7 @@ export class DatePicker implements ControlValueAccessor, AfterViewInit {
     let n = 1;
     let firstWeekDay: number = null;
 
-    this.dateValue = date.format('MMMM YYYY');
+    this.dateValue = date.format('YYYY MM');
     this.days = [];
 
     if (this.firstWeekDaySunday === true) {

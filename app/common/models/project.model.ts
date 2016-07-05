@@ -1,6 +1,6 @@
 export class ProjectModel {
   public projectId: number;
-  public projectNamr: string;
+  public projectName: string;
   public deptCode: string;
   public partnerId: number;
   public startDate: Date;
@@ -8,7 +8,7 @@ export class ProjectModel {
   public contractAmount: number;
   public supplyAmount: number;
   public vtaAmount: number;
-  public outsourcing_aomut: number;
+  public outsourcingAmount: number;
   public netAmount: number;
   public remarks: string;
 }
