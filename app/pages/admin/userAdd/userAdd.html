@@ -1,0 +1,109 @@
+<wrapper style="background-color:#eee;">
+    <!-- <div class="col-lg-12">
+    <h2 class="page-title">사업자 신규 등록</h2>
+    <hr>
+  </div> -->
+
+  <div id="userAdd-wrap">
+    <!--  등록 폼 -->
+    <div class="container">
+      <form class="form-horizontal" role="form" (ngSubmit)="onSubmit()">
+        <!-- <legend>
+        사업자 신규 등록</legend> -->
+        <!-- 각각의 client 입력 부분은 [(ngModel)]="모델.모델 안 데이터 값 정의" required-->
+          <h2>사용자 신규 등록</h2>
+        <br />
+        <div class="form-group">
+          <label class="col-sm-3 control-label label_style">사용자 ID </label>
+          <div class="col-sm-9">
+            <!-- partnerModel의 partnerName 바인딩 -->
+            <input type="text"class="form-control input-md" placeholder="partner name" [(ngModel)]="userModel.userId" required>
+          </div>
+
+        </div>
+        <br />
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label label_style">사용자 비밀번호 </label>
+          <div class="col-sm-9">
+            <!-- partnerModel의 businessNumber 바인딩 -->
+            <input type="text" class="form-control input-md" placeholder="business num" [(ngModel)]="userModel.password" required>
+          </div>
+        </div>
+
+        <br />
+        <div class="form-group">
+          <label class="col-sm-3 control-label label_style">사용자 이름  </label>
+          <div class="col-sm-9">
+            <!-- partnerModel의 partnerName 바인딩 -->
+            <input type="text"class="form-control input-md" placeholder="partner name" [(ngModel)]="userModel.userName" required>
+          </div>
+
+        </div>
+
+        <br />
+        <div class="form-group">
+          <label for="business code" class="col-sm-3 control-label label_style">사용자 소속  </label>
+          <!-- ngModel : 서버에 있는 model의 가져올 데이터 바인딩  -->
+          <div class="col-sm-9">
+            <select class="form-control  input-md" [(ngModel)]="userModel.deptCode" required>
+
+              <!-- 매입매출 거래 구분은 businessCodeModels 에서 각각의 businessCode.description 을 옵션 값이 배열 형태로 -->
+              <!-- *ngFor문 = for each문과 유사하다 -->
+              <!-- let businessCodeModel of businessModels =businessModels의 BusinessCodeModel을 각 배열 형태로 뿌려준다 -->
+
+              <option *ngFor="let deptCodeModel of deptCodeModels" [value]="deptCodeModel.deptCode" >{{ deptCodeModel.deptName }} </option>
+
+            </select>
+          </div>
+
+
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="partner code" class="col-sm-3 control-label label_style">사용자 직위</label>
+          <div class="col-sm-9">
+            <select class="form-control" [(ngModel)]="userModel.rankCode" required>
+
+              <!-- 사업자 구분은 partnerCodeModels 에서 각각의 partnerCodeModel.description 을 옵션 값이 배열 형태로 -->
+              <!-- *ngFor문 = for each문과 유사하다 -->
+              <!-- let partnerCodeModel of partnerCodeModels의 partnerCodeModel을 각 배열 형태로 뿌려준다 -->
+              <option *ngFor="let rankCodeModel of rankCodeModels"  [value]="rankCodeModel.rankCode">{{ rankCodeModel.rankName }} </option>
+            </select>
+          </div>
+
+        </div>
+
+        <br />
+        <div class="form-group">
+          <label for="partner code" class="col-sm-3 control-label label_style">사용자 권한</label>
+          <div class="col-sm-9">
+            <select class="form-control" [(ngModel)]="userModel.roleCode" required>
+
+              <!-- 사업자 구분은 partnerCodeModels 에서 각각의 partnerCodeModel.description 을 옵션 값이 배열 형태로 -->
+              <!-- *ngFor문 = for each문과 유사하다 -->
+              <!-- let partnerCodeModel of partnerCodeModels의 partnerCodeModel을 각 배열 형태로 뿌려준다 -->
+              <option *ngFor="let roleCodeModel of roleCodeModels"  [value]="roleCodeModel.roleCode">{{ roleCodeModel.description }} </option>
+            </select>
+          </div>
+
+        </div>
+
+        <br />
+        <!-- 등록 버튼 onSubmit() -->
+        <div class="form-group">
+          <div class="col-sm-9 col-sm-offset-3">
+            <button type="submit" class="btn btn-danger btn-block">등록</button>
+          </div>
+        </div>
+
+
+      </form>
+
+    </div>
+
+
+  </div>
+
+
+</wrapper>

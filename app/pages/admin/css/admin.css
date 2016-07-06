@@ -1,0 +1,31 @@
+* {
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.page-header h2{padding-left: 280px;}
+/* Form 스타일 추가 _ 160705 */
+*[role="form"] {
+    max-width: 550px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+*[role="form"] h2 {
+    margin-left: 6.5em;
+    margin-bottom: 1em;
+}
+#userAdd-wrap{
+  width: 1400px !important;
+}
+.label_style{
+  padding-right: 10px
+}
+.btn-block{
+  width: 50%;
+  margin-left: 50%;
+  padding: 3% 0;
+}
