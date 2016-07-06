@@ -7,6 +7,7 @@ import { PartnerAdd } from './pages/partner/partnerAdd/partnerAdd.component';
 import { PartnerUpdate } from './pages/partner/partnerUpdate/partnerUpdate.component';
 import { ProjectRoutes } from './pages/project/route/project.routes'
 import { UserAdd } from './pages/admin/userAdd/userAdd.component';
+import { UserUpdate } from './pages/admin/userUpdate/userUpdate.component';
 
 export const routes: RouterConfig = [
   { path: '', redirectTo: '/home', terminal: true },
@@ -14,8 +15,8 @@ export const routes: RouterConfig = [
   { path: 'home', component: Home },
   { path: 'partner/insert', component: PartnerAdd },
   { path: 'partner/update', component: PartnerUpdate },
-  // 160705
   { path: 'admin/insertUser', component: UserAdd },
+  { path: 'admin/updateUser', component: UserUpdate },
   ...ProjectRoutes
 ];
 export const APP_ROUTER_PROVIDERS = [
