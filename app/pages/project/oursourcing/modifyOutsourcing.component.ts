@@ -1,76 +1,121 @@
-import {Component, OnInit,
-         ViewChild }               from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {InlineEditComponent} from '../../../common/components/inline-edit/inline-edit.component';
+import {DatePicker} from '../../../common/components/datepicker/ng2-datepicker';
+import {ROUTER_DIRECTIVES, Router}          from '@angular/router';
 import {MODAL_DIRECTIVES, ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
-import {DatePicker}               from '../../../common/components/datepicker/ng2-datepicker';
+import {ProjectModel} from '../../../common/models/project.model';
 import {ModifyOutsourcingService} from './services/modifyOutsourcing.service';
-import {ProjectDetailService}     from '../projectDetail/services/projectDetail.service';
-import {SelectDetailModel}        from '../projectDetail/models/selectDetail.model';
-import {ProjectModel}             from '../../../common/models/project.model';
-import {BusinessCodeModel}        from'../../../common/models/businessCode.model';
-import {RankCodeModel}            from '../../../common/models/rankCode.model';
-import {OutsourcingModel}         from '../../../common/models/outsourcing.model';
-import {PartnerModel}             from '../../../common/models/partner.model';
-
+import {SelectOutSourcingModel} from './models/selectOutsourcing.model';
+import {BusinessCodeModel} from '../../../common/models/businessCode.model';
+import {RatingCodeModel} from '../../../common/models/ratingCode.model';
+import {PartnerModel} from '../../../common/models/partner.model';
 
 @Component({
-    selector: 'outsourcing',
+    selector: 'modify-outsourcing',
     templateUrl: 'app/pages/project/oursourcing/modifyOutsourcing.html',
-    providers: [ModifyOutsourcingService, ProjectDetailService],
-    directives: [DatePicker, MODAL_DIRECTIVES],
-    styleUrls: ['app/pages/project/css/project.css']
+    providers: [ModifyOutsourcingService],
+    directives: [ROUTER_DIRECTIVES, InlineEditComponent, DatePicker, MODAL_DIRECTIVES],
 })
 export class ModifyOutsourcing implements OnInit {
-    @ViewChild('modal')
-    modal: ModalComponent;
+    @ViewChild('addModal')
+    private modal: ModalComponent;
 
-    private pjtListModel:ProjectModel[];
-    private pjtIdModel = {'projectId': 0};
-    private outsourcingListModel:SelectDetailModel;
-    // private businessCodes: BusinessCodeModel[];
-    private rankCodes: RankCodeModel[];
-    private addOutsourcing: OutsourcingModel;
-    private searchPartnerModel: PartnerModel;
-    private madalPartnerList: PartnerModel[];
+    private projectList:ProjectModel[];
+    private outsourcingList:SelectOutSourcingModel[];
+    private bussinessListModel: BusinessCodeModel[];
+    private ratingListModel: RatingCodeModel[];
+    private selProject:ProjectModel;
+    private addOutsourcingModel: SelectOutSourcingModel;
+    private selOutsourcing: SelectOutSourcingModel;
+    private partnerNameModel: PartnerModel;
+    private searchPartnerModel: PartnerModel[];
+    private selPartner: PartnerModel;
 
-    constructor(private service:ModifyOutsourcingService,
-                private pjtDetailService:ProjectDetailService) {
-        this.pjtListModel = [];
-        this.outsourcingListModel = new SelectDetailModel();
-        // this.businessCodes = JSON.parse(localStorage.getItem("currentUserData")).businessCodeModels;
-        this.rankCodes = [];
-        this.addOutsourcing = new OutsourcingModel();
-        this.searchPartnerModel = new PartnerModel();
-        // this.searchPartnerModel.businessCode = "1";
-        this.madalPartnerList = [];
+    animation: boolean = true;
+    keyboard: boolean = true;
+    backdrop: string | boolean = true;
+
+
+    constructor(private service:ModifyOutsourcingService) {
+        this.projectList = [];
+        this.outsourcingList = [];
+        this.bussinessListModel = [];
+        this.ratingListModel = [];
+        this.searchPartnerModel = [];
+        this.selProject = new ProjectModel();
+        this.addOutsourcingModel = new SelectOutSourcingModel();
+        this.selOutsourcing = new SelectOutSourcingModel();
+        this.partnerNameModel = new PartnerModel();
+        this.selPartner = new PartnerModel();
+        this.selProject.projectId = 0;
+        this.partnerNameModel.businessCode = "1";
     }
 
     ngOnInit() {
+        this.bussinessListModel = JSON.parse(localStorage.getItem("currentUserData")).businessCodeModels;
+        this.ratingListModel = JSON.parse(localStorage.getItem("currentUserData")).ratingCodeModels;
+
         this.service.getPjtList().subscribe(
-            data=> {
-                this.pjtListModel = data;
-            }, error => console.log("outsourcing - getPjtList error: " + error)
+            data => {
+                this.projectList = data;
+                console.log("Success Get Project LIst data");
+                console.log(this.projectList);
+            }, error => console.log("ModifyOutsourcing get projectList error : " + error)
         )
     }
 
-    onSearchList() {
-        this.pjtDetailService.projectIdByData(this.pjtIdModel).subscribe(
-            data=> {
-                this.outsourcingListModel = data;
-                console.log("ModifyOutSourcing get outosurcing List");
-                console.log(this.outsourcingListModel);
-            }, error => console.log("ModifyOutSourcing get outosurcing List error: " + error)
+    onSearchOutsourcing() {
+        this.service.findOutsourcingList(this.selProject).subscribe(
+            data => {
+                this.outsourcingList = data;
+            }, error => console.log("ModifyOutsourcing onSearchOutsourcing error : " + error)
         )
     }
 
-    searchPartnerOpen(){
+    searchPartner() {
+        this.service.partnerSearchByName(this.partnerNameModel).subscribe(
+            data=>{
+                this.searchPartnerModel = data;
+            }
+        )
+    }
+
+    partnerRowClick(partnerModel: PartnerModel){
+        this.selPartner = partnerModel;
+    }
+
+    selDeptModalOpen(outsourcing){
+        console.log("selDeptModalOpen!");
 
     }
 
-    searchPartnerDismissed(){
+    selDeptModalClose(){
+        console.log("selDeptModalClose!");
+    }
+
+    addModalClose() {
+        console.log("addModalClose!");
+    }
+
+    saveEditable(value){
+        alert("saveEditable 호출");
+    }
+
+    deleteData(){
 
     }
 
-    searchPartnerClosed(){
-
+    dismissed() {
     }
+
+    opened() {
+    }
+
+    navigate() {
+    }
+
+    open() {
+        this.modal.open();
+    }
+
 }
