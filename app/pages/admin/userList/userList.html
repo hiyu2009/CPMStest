@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">사용자</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>  
+    <!-- /.row -->
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>성명</th>
+                    <th>소속</th>
+                    <th>직위</th>
+                    <th>권한</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let UserListModel of UserListModels" (click)="onRowClick(UserListModel)">
+                    <td>
+                      <inline-edit [(ngModel)]="UserListModel.userId" (onSave)="saveEditable($event)"></inline-edit>
+                    </td>
+                    <td>
+                      <inline-edit [(ngModel)]="UserListModel.userName" (onSave)="saveEditable($event)"></inline-edit>
+                    </td>
+                    <td>
+                      <!-- <inline-edit [(ngModel)]="UserListModel.deptName" (onSave)="saveEditable($event)"></inline-edit> -->
+                      <select class="form-control" [(ngModel)]="UserListModel.deptCode" (ngModelChange)="onChange($event)" required>
+                          <option *ngFor="let deptCodeModel of deptCodeModels" [value]="deptCodeModel.deptCode" [selected]="deptCodeModel.deptCode == UserListModel.deptCode" >{{ deptCodeModel.deptName }} </option>
+                      </select>
+                    </td>
+                    <td class="center">
+                      <!--<inline-edit [(ngModel)]="UserListModel.rankName" (onSave)="saveEditable($event)"></inline-edit>-->
+                      <select class="form-control" [(ngModel)]="UserListModel.rankCode" (ngModelChange)="onChange($event)" required>
+                          <option *ngFor="let rankCodeModel of rankCodeModels" [value]="rankCodeModel.rankCode" [selected]="rankCodeModel.rankCode == UserListModel.rankCode" >{{ rankCodeModel.rankName }} </option>
+                      </select>
+                    </td>
+                    <td class="center">
+                      <!-- <inline-edit [(ngModel)]="UserListModel.description" (onSave)="saveEditable($event)"></inline-edit> -->
+                      <select class="form-control" [(ngModel)]="UserListModel.roleCode" (ngModelChange)="onChange($event)" required>
+                          <option *ngFor="let roleCodeModel of roleCodeModels" [value]="roleCodeModel.roleCode" [selected]="roleCodeModel.roleCode == UserListModel.roleCode" >{{ roleCodeModel.description }} </option>
+                      </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
