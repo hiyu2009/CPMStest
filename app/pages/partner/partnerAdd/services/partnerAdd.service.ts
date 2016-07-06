@@ -7,7 +7,7 @@ export class PartnerAddService {
   constructor (private http:Http) {}
 
   //입력한 사업자 등록 데이터, 코드를 송신
-  getPartnerData(partnerModel) {
+   addPartnerData(partnerModel) {
   //정해둔 사업자 등록 url로 연결
     let url = 'http://localhost:8080/partner/insert';
     let header = new Headers();

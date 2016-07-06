@@ -1,56 +1,69 @@
+<!-- 사업자 등록 수정 html 파일 -->
 <wrapper>
-  <div class="row">
-    <div class="col-lg-12 container">
-      <h1 class="page-header">사업자 등록 수정</h1>
-
+  <div id="partnerUpdate-wrap">
+    <div class="container">
       <!--  등록 폼 -->
-      <form role="form" (ngSubmit)="onSubmit()">
+      <form class="form-horizontal"role="form" (ngSubmit)="onSubmit()">
         <!-- (ngSubmit)="onSubmit()" -->
         <!-- 각각의 client 입력 부분은 [(ngModel)]="모델.모델 안 데이터 값 정의" required-->
+        <h2>사업자 등록 수정</h2>
+        <br />
         <div class="form-group">
-          <label>사업자 명 </label>
+          <label class="col-sm-3 control-label label_style">사업자 명 </label>
           <!-- partnerModel의 partnerName 바인딩 -->
-          <input class="form-control" placeholder="partner name" [(ngModel)]="partnerModel.partnerName" required>
+          <div class="col-sm-9">
+            <input type="text" class="form-control input-md" placeholder="partner name" [(ngModel)]="partnerModel.partnerName" required>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label class="col-sm-3 control-label label_style">사업자 번호</label>
+          <div class="col-sm-9">
+            <!-- partnerModel의 businessNumber 바인딩 -->
+            <input type="text" class="form-control input-md" placeholder="business num" [(ngModel)]="partnerModel.businessNumber" required>
+            <span class="help-block" style="float:right;color:red;">프리랜서의 경우는 주민번호</span>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label>사업자 번호</label>
-          <!-- partnerModel의 businessNumber 바인딩 -->
-          <input class="form-control" placeholder="business num" [(ngModel)]="partnerModel.businessNumber" required>
-          <p style="color:red;">프리랜서의 경우는 주민번호</p>
-        </div>
+        <br />
 
         <div class="form-group">
-          <label>거래 구분</label>
-          <!-- ngModel : 서버에 있는 model의 가져올 데이터 바인딩  -->
-          <select class="form-control" [(ngModel)]="partnerModel.businessCode" required>
+          <label for="business code" class="col-sm-3 control-label label_style">거래 구분</label>
+          <div class="col-sm-9">
+            <select class="form-control input-md" [(ngModel)]="partnerModel.businessCode" required>
 
-            <!-- 매입매출 거래 구분은 businessCodeModels 에서 각각의 businessCode.description 을 옵션 값이 배열 형태로 -->
-            <!-- *ngFor문 = for each문과 유사하다 -->
-            <!-- let businessCodeModel of businessModels =businessModels의 BusinessCodeModel을 각 배열 형태로 뿌려준다 -->
+              <!-- 매입매출 거래 구분은 businessCodeModels 에서 각각의 businessCode.description 을 옵션 값이 배열 형태로 -->
+              <!-- *ngFor문 = for each문과 유사하다 -->
+              <!-- let businessCodeModel of businessModels =businessModels의 BusinessCodeModel을 각 배열 형태로 뿌려준다 -->
               <option *ngFor="let businessCodeModel of businessCodeModels" [value]="businessCodeModel.businessCode" >{{ businessCodeModel.description }} </option>
 
-          </select>
-
+            </select>
+          </div>
         </div>
-
+        <br />
         <div class="form-group">
-          <label>사업자 구분</label>
-          <select class="form-control" [(ngModel)]="partnerModel.partnerCode" required>
+          <label for="partner code" class="col-sm-3 control-label label_style">사업자 구분</label>
+          <div class="col-sm-9">
+            <select class="form-control" [(ngModel)]="partnerModel.partnerCode" required>
 
-            <!-- 사업자 구분은 partnerCodeModels 에서 각각의 partnerCodeModel.description 을 옵션 값이 배열 형태로 -->
-            <!-- *ngFor문 = for each문과 유사하다 -->
-            <!-- let partnerCodeModel of partnerCodeModels의 partnerCodeModel을 각 배열 형태로 뿌려준다 -->
-            <option *ngFor="let partnerCodeModel of partnerCodeModels"  [value]="partnerCodeModel.partnerCode">{{ partnerCodeModel.description }} </option>
-          </select>
+              <!-- 사업자 구분은 partnerCodeModels 에서 각각의 partnerCodeModel.description 을 옵션 값이 배열 형태로 -->
+              <!-- *ngFor문 = for each문과 유사하다 -->
+              <!-- let partnerCodeModel of partnerCodeModels의 partnerCodeModel을 각 배열 형태로 뿌려준다 -->
+              <option *ngFor="let partnerCodeModel of partnerCodeModels"  [value]="partnerCodeModel.partnerCode">{{ partnerCodeModel.description }} </option>
+            </select>
+          </div>
+        </div>
+        <br />
+        <!-- 등록 버튼 onSubmit() -->
+        <div class="col-sm-9 col-sm-offset-3">
+          <button type="submit" class="btn btn-primary btn-block">수정</button>
         </div>
 
-        <!-- 등록 버튼 onSubmit() -->
-        <button type="submit" class="btn btn-lg btn-primary btn-block">수정</button>
 
       </form>
 
     </div>
+
 
   </div>
 

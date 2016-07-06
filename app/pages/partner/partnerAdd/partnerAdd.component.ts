@@ -44,7 +44,7 @@ export class PartnerAdd {
   onSubmit() {
     // 등록 버튼을 눌렀을때 partnerAddService의 getPartnerData함수의 객체 모델인 partnerModel
     //partnerModel이 import 하는 result모델에서 등록 성공 /실패 여부 확인
-      this.partnerAddService.getPartnerData(this.partnerModel).subscribe(
+      this.partnerAddService.addPartnerData(this.partnerModel).subscribe(
 
 
         //통신의 유무만 확인(프론트단과 백단쪽이 통신이 이루어지고 있는지만)
