@@ -1,0 +1,88 @@
+<wrapper style="background-color:#eee;">
+    <div class="project-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 container">
+                    <h1 class="page-header">외주인력 관리</h1>
+
+                    <!--<ol class="breadcrumb">-->
+                    <!--<li><a [routerLink]="['/project/selectList']">프로젝트</a></li>-->
+                    <!--<li><a [routerLink]="['/project/insertProject']">등록</a></li>-->
+                    <!--</ol>-->
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <select class="form-control" [(ngModel)]="pjtIdModel.projectId">
+                                <option value=0 disabled selected>프로젝트 목록</option>
+                                <option *ngFor="let pjtModel of pjtListModel" [value]="pjtModel.projectId">
+                                    {{pjtModel.projectName}}
+                                </option>
+                            </select>
+
+                            <select class="form-control" [(ngModel)]="pjtIdModel.projectId">
+                                <option value="0" disabled selected>프로젝트 목록</option>
+                                <option *ngFor="let pjtModel of pjtListModel" [value]="pjtModel.projectId">
+                                    {{pjtModel.projectName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-default btn-lg btn-block  pull-right" (click)="onSearchList()">조회</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-hover table-responsive" [(ngModel)]="outsourcingListModel.outsourcingArray">
+                            <tr>
+                                <th>사업자명</th>
+                                <th>사업자 구분</th>
+                                <th>등급</th>
+                                <th>시작일</th>
+                                <th>종료일</th>
+                                <th>계약금액</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" [(ngModel)]="addOutsourcing.partnerId"></td>
+                                <td><input type="text" [(ngModel)]="addOutsourcing.partnerId"></td>
+                                <td><input type="text" [(ngModel)]="addOutsourcing.ratingCode"></td>
+                                <td><input type="text" [(ngModel)]="addOutsourcing.startDate"></td>
+                                <td><input type="text" [(ngModel)]="addOutsourcing.endDate"></td>
+                                <td><input type="text" [(ngModel)]="addOutsourcing.outsourcingAmount"></td>
+                            </tr>
+                            <tr *ngIf="outsourcingListModel.outsourcingArray.length > 0" *ngFor="let outsourcingList of outsourcingListModel.outsourcingArray">
+                                <td><input type="text" [(ngModel)]="outsourcingList.partnerId"></td>
+                                <td><input type="text" [(ngModel)]="outsourcingList.partnerId"></td>
+                                <td><input type="text" [(ngModel)]="outsourcingList.ratingCode"></td>
+                                <td><input type="text" [(ngModel)]="outsourcingList.startDate"></td>
+                                <td><input type="text" [(ngModel)]="outsourcingList.endDate"></td>
+                                <td><input type="text" [(ngModel)]="outsourcingList.outsourcingAmount"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--<modal [animation]="true" [keyboard]="true" [backdrop]="true" (onClose)="searchPartnerClosed()"-->
+                   <!--(onDismiss)="searchPartnerDismissed()" (onOpen)="searchPartnerOpen()" #partnerModal>-->
+                <!--<modal-header [show-close]="true">-->
+                    <!--<h4 class="modal-title">사업자 검색</h4>-->
+                <!--</modal-header>-->
+                <!--<modal-body>-->
+                    <!--<div class="row">-->
+                        <!--<input class="form-control" placeholder="사업자 이름" [(ngModel)]="searchPartnerModel.partnerName">-->
+                        <!--<table class="table-hover table-responsive" [(ngModel)]="madalPartnerList">-->
+                            <!--<tr>-->
+                                <!--<th>사업자 번호</th>-->
+                                <!--<th>사업자 이름</th>-->
+                            <!--</tr>-->
+                            <!--<tr *ngFor="let modalPartner of modalPartnerList">-->
+                                <!--<td>{{modalPartner.businessNumber}}</td>-->
+                                <!--<td>{{modalPartner.partnerName}}</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                <!--</modal-body>-->
+                <!--<modal-footer [show-default-buttons]="true"></modal-footer>-->
+            <!--</modal>-->
+        </div>
+    </div>
+</wrapper>

@@ -16,7 +16,7 @@ export class ProjectUpdateService {
     }
 
     //2016.07.05 임시메소드 - 매출처의 목록을 가져오는 메소드
-    //partner List 페이지 생성시 그곳에 있는 service 파일의 메소드로 대체 예정
+    //partner List 페이지 생성시 그곳에 있는 services 파일의 메소드로 대체 예정
     getDeptCode() {
         let url = this.SERVER_DOMAIN + "partner/selectList";
         let header = new Headers();

@@ -1,14 +1,16 @@
 import {RouterConfig}          from '@angular/router';
 import {ProjectList}           from '../projectList/projectList.component';
 import {ProjectDetail}         from '../projectDetail/projectDetail.component';
-import {ProjectAdd}         from '../projectAdd/projectAdd.component';
+import {ProjectAdd}            from '../projectAdd/projectAdd.component';
 import {ProjectUpdate}         from '../projectUpdate/projectUpdate.component';
+import {ModifyOutsourcing}     from '../oursourcing/modifyOutsourcing.component';
 
 export const ProjectRoutes:RouterConfig = [
     {path: 'project/selectList', component: ProjectList},
     {path: 'project/selectDetail/:id', component: ProjectDetail},
     {path: 'project/insertProject', component: ProjectAdd},
-    {path: 'project/updateProject/:id', component: ProjectUpdate}
+    {path: 'project/updateProject/:id', component: ProjectUpdate},
+    {path: 'project/modifyOutsourcing', component: ModifyOutsourcing}
 ];
 
 

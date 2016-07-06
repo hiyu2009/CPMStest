@@ -35,6 +35,9 @@ export class ProjectList implements OnInit {
         this.searchModel = new SelectListModel();
         this.deptCodeModels = [];
         this.pjtListModels = [];
+        this.selectFilter = 0;
+        
+        this.deptSelect.deptCode = "0";
         this.data = new Observable(observer => this.dataObserver = observer);
     }
 

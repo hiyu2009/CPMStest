@@ -22,7 +22,7 @@ export class ProjectListService {
     return this.http.post(url, JSON.stringify(selectModel), {headers: header})
           .map( (responseData) => {
             this.result = responseData.json();
-            console.log("projectList.service result");
+            console.log("projectList.services result");
             console.log(this.result);
             return this.result;
           })

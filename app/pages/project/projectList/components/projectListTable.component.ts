@@ -16,7 +16,7 @@ import {
 }                              from '@angular/router';
 import {ProjectUpdateService} from '../../projectUpdate/services/projectUpdate.service'
 import {ResultModel}          from '../../../../common/models/result.model';
-import {of} from "rxjs/observable/of";
+
 @Component({
     selector: 'project-list-table',
     directives: [ROUTER_DIRECTIVES],
