@@ -16,7 +16,7 @@
             <button class="btn btn-block btn-default" (click)="onSearchOutsourcing()">조회</button>
         </div>
         <div class="col-lg-2">
-            <button class="btn btn-block btn-success" (click)="addDataModal.open()">추가</button>
+            <button class="btn btn-block btn-success" (click)="addDataModal.open('lg')">추가</button>
         </div>
     </div>
 
@@ -33,22 +33,24 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let outsourcingModel of outsourcingList">
+                <tr *ngFor="let outsourcingModel of modifyOutsourcingModel.mergeOutsourcingModels">
                     <td>
-                        <input type="text" [(ngModel)]="outsourcingModel.partnerName" (click)="partnerSearchModal.open('lg')"/>
+                        <a (click)="selOutsourcing = outsourcingModel; partnerSearchModal.open('lg')">
+                            <input type="text" [(ngModel)]="outsourcingModel.partnerName" disabled/>
+                        </a>
                         <!--<inline-edit [(ngModel)]="outsourcingModel.partnerName" (onSave)="saveEditable($event)"></inline-edit>-->
                     </td>
                     <td>
                         <!-- <inline-edit [(ngModel)]="UserListModel.deptName" (onSave)="saveEditable($event)"></inline-edit> -->
-                        <select class="form-control" [(ngModel)]="outsourcingModel.partnerId" (ngModelChange)="onChange($event)" required>
-                            <option disabled *ngFor="let bussinessModel of bussinessListModel" [value]="bussinessModel.businessCode">
-                                {{ bussinessModel.description}}
+                        <select class="form-control" [(ngModel)]="outsourcingModel.partnerCode" required>
+                            <option disabled *ngFor="let partnerCodeModel of partnerCodeListModel" [value]="partnerCodeModel.partnerCode">
+                                {{ partnerCodeModel.description}}
                             </option>
                         </select>
                     </td>
                     <td class="center">
                         <!--<inline-edit [(ngModel)]="outsourcingModel.rankName" (onSave)="saveEditable($event)"></inline-edit>-->
-                        <select class="form-control" [(ngModel)]="outsourcingModel.ratingCode" (ngModelChange)="onChange($event)" required>
+                        <select class="form-control" [(ngModel)]="outsourcingModel.ratingCode" required>
                             <option *ngFor="let ratingCodeModel of ratingListModel" [value]="ratingCodeModel.ratingCode">
                                 {{ ratingCodeModel.description }}
                             </option>
@@ -56,40 +58,46 @@
                     </td>
                     <td class="center">
                         <!-- <inline-edit [(ngModel)]="outsourcingModel.description" (onSave)="saveEditable($event)"></inline-edit> -->
-                        <datepicker [(ngModel)]="outsourcingModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
+                        <datepicker [(ngModel)]="outsourcingModel.startDate" view-format="YYYY-MM-DD"
+                                    model-format="YYYY-MM-DD" init-date=""></datepicker>
                     </td>
                     <td>
                         <datepicker [(ngModel)]="outsourcingModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
                     </td>
                     <td>
-                        <inline-edit [(ngModel)]="outsourcingModel.outsourcingAmount" (onSave)="saveEditable($event)"></inline-edit>
+                        <inline-edit [(ngModel)]="outsourcingModel.outsourcingAmount"
+                                     (onSave)="saveEditable($event)"></inline-edit>
                     </td>
-                    <td>
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true" (click)="deleteData()"></span>
+                    <td class="center">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true" (click)="deleteData(outsourcingModel)"></span>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-block btn-primary pull-right" (click)="onSaveData()">저장</button>
     </div>
 
-    <modal style="z-index: 1049" [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="selDeptModalClose()" (onDismiss)="dismissed()"  (onOpen)="selDeptModalOpen()" #partnerSearchModal>
+    <!--사업자 검색 Modal-->
+    <modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop"
+           (onClose)="selDeptModalClose()" (onDismiss)="dismissed()" (onOpen)="selDeptModalOpen()" #partnerSearchModal>
         <modal-header [show-close]="true">
-            <h3>외주목록 등록</h3>
+            <h3>사업자검색</h3>
         </modal-header>
         <modal-body>
             <div class="container">
                 <div class="row">
                     <form class="form-inline">
                         <div class="col-lg-10">
-                            <input type="text" [(ngModel)]="partnerNameModel.partnerName" required/>
+                            <input class="form-control" type="text" [(ngModel)]="partnerNameModel.partnerName" required/>
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn btn-default btn-block" (click)="searchPartner()">조회</button>
+                            <button type="button" class="btn btn-default btn-block" (click)="searchPartner()">조회
+                            </button>
                         </div>
                     </form>
                 </div>
                 <div class="row">
-                    <p >선택된 파트너 이름: {{selPartner.partnerName}}</p>
+                    <p>선택된 파트너 이름: {{selPartner.partnerName}}</p>
                 </div>
                 <div class="row">
                     <table class="table table-striped table-bordered table-hover">
@@ -110,27 +118,104 @@
             </div>
         </modal-body>
         <modal-footer>
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="partnerSearchModal.dismiss()">닫기</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="partnerSearchModal.dismiss()">
+                닫기
+            </button>
             <button type="button" class="btn btn-primary" (click)="partnerSearchModal.close()">선택</button>
         </modal-footer>
     </modal>
 
-    <modal style="z-index: 1049" [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="addModalClose()" (onDismiss)="dismissed()"  (onOpen)="opened()" #addDataModal>
+    <!--신규 외주인력 등록 Modal-->
+    <modal style="z-index: 1049" [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop"
+           (onClose)="addModalClose()" (onDismiss)="dismissed()" (onOpen)="opened()" #addDataModal>
         <modal-header [show-close]="true">
-            <h3>외주목록 등록</h3>
+            <h3>신규 외주목록 등록</h3>
         </modal-header>
         <modal-body>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <!--<input type="text" [(ngModel)]="addOutsourcingModel.">-->
+            <select class="form-control" [(ngModel)]="addOutsourcingModel.outsourcingCode" required>
+                <option [value]="0" [disabled]="true" [selected]="true"> 외주구분 </option>
+                <option [value]="1"> 개발외주 </option>
+                <option [value]="2"> 상품외주 </option>
+            </select>
+
+            <form #modalForm="ngForm" class="form">
+                <div class="container" *ngIf="addOutsourcingModel.outsourcingCode == '1'">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a (click)="selOutsourcing = null; partnerSearchModal.open('lg')">
+                                <input class="form-control" type="text" [(ngModel)]="addOutsourcingModel.partnerName" placeholder="사업자" ngControl="partnerName" #partnerName="ngForm" disabled>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <select class="form-control" [(ngModel)]="addOutsourcingModel.partnerCode" ngControl="partnerId" #partnerId="ngForm" required>
+                                <option value=0 [disabled]="true" [selected]="true"> 사업자구분 </option>
+                                <option disabled *ngFor="let partnerCodeModel of partnerCodeListModel" [value]="partnerCodeModel.partnerCode">
+                                    {{ partnerCodeModel.description}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="number" class="form-control" [(ngModel)]="addOutsourcingModel.outsourcingAmount" placeholder="계약금액" ngControl="outsourcingAmount" #outsourcingAmount="ngForm" required>
+                        </div>
+                        <div class="col-lg-6">
+                            <select class="form-control" [(ngModel)]="addOutsourcingModel.ratingCode" ngControl="ratingCode" #ratingCode="ngForm" required>
+                                <option value="0" [disabled]="true" [selected]="true"> 개발등급 </option>
+                                <option *ngFor="let ratingCodeModel of ratingListModel" [value]="ratingCodeModel.ratingCode">
+                                    {{ ratingCodeModel.description }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <datepicker [(ngModel)]="addOutsourcingModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
+                        </div>
+                        <div class="col-lg-1">
+                            <p>~</p>
+                        </div>
+                        <div class="col-lg-5">
+                            <datepicker [(ngModel)]="addOutsourcingModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
+                        </div>
+                    </div>
+                    <p style="color: red;" *ngIf="addOutsourcingModel.startDate > addOutsourcingModel.endDate">시작일이 종료일보다 클수는 없습니다.</p>
+                </div>
+
+                <div class="container" *ngIf="addOutsourcingModel.outsourcingCode == '2'">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a (click)="selOutsourcing = null; partnerSearchModal.open('lg')">
+                                <input class="form-control" type="text" [(ngModel)]="addOutsourcingModel.partnerName" placeholder="사업자" ngControl="partnerName" #partnerName="ngForm" disabled>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <select class="form-control" [(ngModel)]="addOutsourcingModel.partnerCode" ngControl="partnerId" #partnerId="ngForm" required>
+                                <option value=0 disabled selected> 사업자구분 </option>
+                                <option disabled *ngFor="let partnerCodeModel of partnerCodeListModel" [value]="partnerCodeModel.partnerCode">
+                                    {{ partnerCodeModel.description}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input class="form-control" type="text" [(ngModel)]="addOutsourcingModel.product" placeholder="상품명">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input class="form-control" type="number" [(ngModel)]="addOutsourcingModel.outsourcingAmount" placeholder="계약금액">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </modal-body>
         <modal-footer>
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="partnerSearchModal.dismiss()">닫기</button>
-            <button type="button" class="btn btn-primary" (click)="partnerSearchModal.close()">선택</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="partnerSearchModal.dismiss()">
+                닫기
+            </button>
+            <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid && addOutsourcingModel.startDate > addOutsourcingModel.endDate" (click)="addDataModal.close()">추가</button>
         </modal-footer>
     </modal>
 </div>
