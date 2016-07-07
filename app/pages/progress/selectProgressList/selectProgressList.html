@@ -1,0 +1,89 @@
+<div class="row">
+    <!--<div class="col-sm-12 container">-->
+        <!--<h1 class="page-header">프로잭트 진행현황 조회</h1>-->
+        <!--<form role="form" class="form-inline" (ngSubmit)="onSubmit()">-->
+            <!--&lt;!&ndash;<input class="form-control" placeholder="partner name" [(ngModel)]="partnerModel.partnerName" required>&ndash;&gt;-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-3">-->
+                    <!--<label for="partnerName">본부명</label>-->
+                    <!--<input class="form-control" placeholder="본부명" id="partnerName">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-3">-->
+                    <!--<label>시작일</label>-->
+                    <!--<datepicker [(ngModel)]="startDate" view-format="DD.MM.YYYY" model-format="YYYY-MM-DD" init-date="2017-05-12"></datepicker>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-3">-->
+                    <!--<label>종료일</label>-->
+                    <!--<datepicker [(ngModel)]="endDate" view-format="DD.MM.YYYY" model-format="YYYY-MM-DD" init-date="2017-05-12"></datepicker>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<div class="col-sm-3">-->
+                        <!--<button>BUTTON1</button>-->
+                        <!--<button>BUTTON2</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+        <!--</form>-->
+    <!--</div>-->
+    <div class="container">
+        <div class="col-xs-12 col-md-offset-2">
+
+            <div class="page-header">
+                <h1>
+                    <span>Angular2 DataTable component</span><br/>
+                    <small>by mariuszfoltak</small>
+                </h1>
+            </div>
+
+            <div class="panel panel-default">
+                <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+                    <thead>
+                    <tr>
+                        <th style="width: 20%">
+                            <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                        </th>
+                        <th style="width: 40%">
+                            <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                        </th>
+                        <th style="width: 10%">
+                            <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                        </th>
+                        <th style="width: 20%">
+                            <mfDefaultSorter by="city">City</mfDefaultSorter>
+                        </th>
+                        <th style="width: 10%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="#item of mf.data">
+
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td class="text-right">{{item.age}}</td>
+                        <td>{{item.city | uppercase}}</td>
+                        <td>
+                            <button class="btn btn-danger" title="remove" (click)="removeItem(item)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

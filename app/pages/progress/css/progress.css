@@ -1,0 +1,12 @@
+* {
+    margin: 0 auto;
+    padding: 0px;
+}
+.page-header{
+    border-bottom-width: 100%;
+}
+.container {
+    float: left;
+    margin-left: 265px;
+    width: 100%;
+}

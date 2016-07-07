@@ -11,7 +11,10 @@
     'rxjs':                           'node_modules/rxjs',
     'ng2-accordion':                  'node_modules/ng2-accordion',
     'moment':                         'node_modules/moment',
-    'ng2-bs3-modal':                  'node_modules/ng2-bs3-modal'
+    'ng2-bs3-modal':                  'node_modules/ng2-bs3-modal',
+      'angular2-datatable':         'https://npmcdn.com/angular2-datatable@0.4.0',
+      'lodash':                     'https://npmcdn.com/lodash@4.6.1/lodash.js'
+
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -20,7 +23,9 @@
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
     'ng2-accordion':              { main: "index.js", defaultExtension: "js" },
     'moment':                     { main: 'moment.js', defaultExtension: 'js'},
-    'ng2-bs3-modal':              { defaultExtension: 'js'  }
+    'ng2-bs3-modal':              { defaultExtension: 'js'  },
+      'angular2-datatable':         { defaultExtension: 'js' },
+
   };
   var ngPackageNames = [
     'common',
@@ -68,3 +73,6 @@
   };
   System.config(config);
 })(this);
+
+
+// npm i -S angular2-datatable
