@@ -5,7 +5,6 @@ import {SelectOutSourcingModel} from '../models/selectOutsourcing.model';
 import {PartnerModel}           from '../../../../common/models/partner.model';
 import {ModifyOutsourcingModel} from '../models/modifiyOutsourcingModel.model';
 import {ResultModel}            from '../../../../common/models/result.model';
-import {merge} from "rxjs/operator/merge";
 
 @Injectable()
 export class ModifyOutsourcingService {

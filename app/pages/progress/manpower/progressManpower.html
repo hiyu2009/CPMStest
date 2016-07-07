@@ -1,0 +1,134 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>외주인력 관리</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <select class="form-control" [(ngModel)]="selPjtModel.projectId">
+                <option value=0 [disabled]="true" [selected]="true">프로젝트 목록</option>
+                <option *ngFor="let listModel of pjtListModels" [value]="listModel.projectId">
+                    {{listModel.projectName}}
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-block btn-default" (click)="onSearchManpower()">조회</button>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-block btn-success" (click)="addDataModal.open('lg')">추가</button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>등급</th>
+                    <th>실소속</th>
+                    <th>매출 계약단가</th>
+                    <th>외주 계약단가</th>
+                    <th>투입일</th>
+                    <th>철수일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let manpowerModel of modifyManpowerModel.mergeManpowerModels">
+                    <td>
+                        <inline-edit [(ngModel)]="manpowerModel.manpowerName" (onSave)="saveEditable($event)"></inline-edit>
+                    </td>
+                    <td>
+                        <select class="form-control" [(ngModel)]="manpowerModel.ratingCode" required>
+                            <option *ngFor="let ratingCodeModel of ratingListModels" [value]="ratingCodeModel.ratingCode">
+                                {{ ratingCodeModel.description}}
+                            </option>
+                        </select>
+                    </td>
+                    <!--소속-->
+                    <td>
+                        <select class="form-control" [(ngModel)]="manpowerModel.partnerId" required>
+                            <option *ngFor="let partnerNameModel of partnerNameListModel" [value]="partnerNameModel.partnerId">
+                                {{ partnerNameModel.description}}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <inline-edit [(ngModel)]="manpowerModel.sellingAmount" (onSave)="saveEditable($event)"></inline-edit>
+                    </td>
+                    <td>
+                        <inline-edit [(ngModel)]="manpowerModel.outsourcingAmount" (onSave)="saveEditable($event)"></inline-edit>
+                    </td>
+                    <td>
+                        <datepicker [(ngModel)]="manpowerModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" ></datepicker>
+                    </td>
+                    <td>
+                        <datepicker [(ngModel)]="manpowerModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" ></datepicker>
+                    </td>
+                    <td class="center">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true" (click)="deleteData(manpowerModel)"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-block btn-primary pull-right" (click)="onSaveData()">저장</button>
+    </div>
+</div>
+
+<!--신규 외주인력 등록 Modal-->
+<modal style="z-index: 1049" [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closeed()" (onDismiss)="dismissed()" (onOpen)="opened()" #addDataModal>
+    <modal-header [show-close]="true">
+        <h3>신규 외주목록 등록</h3>
+    </modal-header>
+    <modal-body>
+        <form #modalForm="ngForm" class="form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <input class="form-control" type="text" [(ngModel)]="addManpowerModel.manpowerName" placeholder="투입인력 이름">
+                    </div>
+                    <div class="col-lg-4">
+                        <select class="form-control" [(ngModel)]="addManpowerModel.ratingCode" required>
+                            <option *ngFor="let ratingCodeModel of ratingListModels" [value]="ratingCodeModel.ratingCode">
+                                {{ ratingCodeModel.description}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4">
+                        <select class="form-control" [(ngModel)]="addManpowerModel.partnerId" required>
+                            <option *ngFor="let partnerNameModel of partnerNameListModel" [value]="partnerNameModel.partnerId">
+                                {{ partnerNameModel.description}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input type="number" class="form-control" [(ngModel)]="addManpowerModel.sellingAmount" placeholder="매출 계약단가" required>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="number" class="form-control" [(ngModel)]="addManpowerModel.outsourcingAmount" placeholder="외주 계약단가" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <datepicker [(ngModel)]="addManpowerModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
+                    </div>
+                    <div class="col-lg-1">
+                        <p>~</p>
+                    </div>
+                    <div class="col-lg-5">
+                        <datepicker [(ngModel)]="addManpowerModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
+                    </div>
+                </div>
+                <p style="color: red;" *ngIf="addManpowerModel.startDate > addManpowerModel.endDate">투입일이 철수일보다 클수는 없습니다.</p>
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addDataModal.dismiss()">
+            닫기
+        </button>
+        <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid && addManpowerModel.startDate > addManpowerModel.endDate" (click)="addDataModal.close()">추가</button>
+    </modal-footer>
+</modal>

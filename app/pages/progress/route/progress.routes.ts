@@ -1,8 +1,10 @@
 import { RouterConfig }          from '@angular/router';
-import { SelectProgressList }           from '../selectProgressList/selectProgressList.component';
+import {ProgressManpwer} from "../manpower/progressManpower.component";
+// import { SelectProgressList }           from '../selectProgressList/selectProgressList.component';
 
 export const ProgressRoutes: RouterConfig = [
-  { path: 'progress/selectProgressList',  component: SelectProgressList }
+  // { path: 'progress/selectProgressList',  component: SelectProgressList }
+    { path: 'progress/selectManpowerList',  component: ProgressManpwer}
 ];
 
 
