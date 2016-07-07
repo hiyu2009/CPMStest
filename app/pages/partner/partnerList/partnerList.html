@@ -8,14 +8,11 @@
         </select>
     </div>
     <div class="col-xs-1 col-sm-1 col-md-2">
-        <select class="form-control" [(ngModel)]="businessSelect.businessCode">
+        <select class="form-control" [(ngModel)]="businessSelect.businessCode" style="padding:0 10px !important;">
             <option  selected="selected" value="0">거래 구분</option>
             <option *ngFor="let businessCodeModel of businessCodeModels" [value]="businessCodeModel.businessCode">
                 {{businessCodeModel.description}}
             </option>
-            <!--<option [value]=1>프로젝트명</option>-->
-            <!--<option [value]=2>매출처</option>-->
-            <!--<option [value]=3>매출처</option>-->
         </select>
     </div>
     <partner-list-table [table-headers]="tableHeaders" [table-rowModels]="data"

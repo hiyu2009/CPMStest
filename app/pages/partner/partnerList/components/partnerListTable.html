@@ -16,8 +16,8 @@
             <tr *ngIf="tableRowModels.length > 0" *ngFor="let rowModel of tableRowModels | async" (click)="onRowClick(rowModel)" >
                 <td>{{rowModel.partnerName}}</td>
                 <td>{{rowModel.businessNumber}}</td>
-                <td>{{rowModel.businessCode }} </td>
-                <td>{{rowModel.partnerCode }}</td>
+                <td>{{rowModel.businessDescription}} </td>
+                <td>{{rowModel.partnerDescription}}</td>
             </tr>
             <tr *ngIf="tableRowModels.length <= 0">
                 <td rowspan="7">등록된 프로젝트 리스트가 없습니다.</td>
