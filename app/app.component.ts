@@ -7,11 +7,12 @@ import { SideBar } from './pages/sideBar/sideBar.component';
 
 import { LoginService } from './pages/login/services/login.service';
 import { ProjectListService } from './pages/project/projectList/services/projectList.service';
+import {CommonModelService} from "./common/services/commonModel.services";
 
 @Component({
   selector: 'my-app',
   directives: [NavBar, SideBar, ROUTER_DIRECTIVES],
-  providers:[ HTTP_PROVIDERS, LoginService, ProjectListService ],
+  providers:[ HTTP_PROVIDERS, LoginService, ProjectListService, CommonModelService ],
   template:`
     <nav-bar></nav-bar>
     <side-bar></side-bar>
