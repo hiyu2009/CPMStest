@@ -19,8 +19,7 @@ import { SelectListModel }    from './models/selectList.model';
     selector: 'partner-list',
     directives: [ PartnerListTable ],
     providers: [ PartnerListService ],
-    templateUrl: 'app/pages/partner/partnerList/partnerList.html',
-    // styleUrls: ['app/pages/partner/partnerList/partnerList.css']
+    templateUrl: 'app/pages/partner/partnerList/partnerList.html'
 })
 
 export class PartnerList implements OnInit{

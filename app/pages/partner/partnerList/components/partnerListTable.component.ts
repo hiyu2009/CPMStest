@@ -23,7 +23,7 @@ import {of} from "rxjs/observable/of";
     directives: [ROUTER_DIRECTIVES],
     providers: [PartnerUpdateService],
     templateUrl: 'app/pages/partner/partnerList/components/partnerListTable.html',
-    styleUrls: ['./app/pages/partner/partnerList/partnerlist.css']
+    // styleUrls: ['./app/pages/partner/partnerList/partnerlist.css']
 })
 
 
