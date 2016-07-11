@@ -26,6 +26,7 @@ import {ResultModel}          from '../../../../common/models/result.model';
 export class ProjectListTable implements OnInit {
     @Input('table-headers') tableHeaders:Object;
     @Input('table-rowModels') tableRowModels:Observable<any>;
+    @Input('rowCount') tableRowCount: number;
     @Output() searchEvent:EventEmitter<any> = new EventEmitter();
 
     private searchBox:Control = new Control();
@@ -38,8 +39,13 @@ export class ProjectListTable implements OnInit {
         this.searchBox
             .valueChanges
             .debounceTime(200)
-            .subscribe((event) => this.searchEvent.emit(event));
-
+            .subscribe(
+                (event) => {
+                    this.searchEvent.emit(event);
+                    console.log("================");
+                    console.log(this.tableRowCount);
+                }
+            )
     }
 
 

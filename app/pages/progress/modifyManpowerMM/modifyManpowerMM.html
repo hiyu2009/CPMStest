@@ -14,9 +14,9 @@
             </select>
         </div>
         <div class="col-lg-5">
-            <select class="form-control" [ngModel]="selDataModel.manpowerName">
+            <select class="form-control" [(ngModel)]="selDataModel.manpowerMm">
                 <option value="" [disabled]="true" [selected]="true">인력목록</option>
-                <option *ngFor="let listModel of manpowerListModels" [value]="listModel.projectId">
+                <option *ngFor="let listModel of manpowerListModels" [value]="listModel.manpowerName">
                     {{listModel.manpowerName}}
                 </option>
             </select>
@@ -26,11 +26,36 @@
         </div>
     </div>
     <div class="row" *ngIf="toggleSearch">
-        <h4>프로젝트 명: <small>{{selPjtInfo.projectModel.projectName}}</small></h4>
-        <p><strong>시작일: </strong> {{selPjtInfo.projectModel.startDate}}<strong> 종료일: </strong>{{selPjtInfo.projectModel.endDate}}</p>
-        <p><strong>투입인력: </strong>{{selManpowerInfo.manpowerName}}<strong> 계약단가: </strong>{{selManpowerInfo.outsourcingAmount}}<strong> 투입기간: </strong>{{selManpowerInfo.startDate}}~{{selManpowerInfo.endDate}}</p>
+        <p><strong>프로젝트 명: </strong>{{selPjtInfo.projectModel.projectName}} <strong>시작일: </strong> {{selPjtInfo.projectModel.startDate}} <strong> 종료일: </strong>{{selPjtInfo.projectModel.endDate}}</p>
+        <p><strong>투입인력: </strong>{{selManpowerInfo.manpowerName}}<strong> 계약단가: </strong>{{selManpowerInfo.outsourcingAmount}} <strong> 투입기간: </strong>{{selManpowerInfo.startDate}}~{{selManpowerInfo.endDate}}</p>
     </div>
     <div class="row">
-
+        <button class="btn btn-success" (click)="pushMMList()">MM 추가</button>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>MM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let mmModel of mmMergeListModel.mergeManpowerMmModels;">
+                    <td>
+                        {{mmModel.month | date:"yyyy-MM"}}
+                    </td>
+                    <td>
+                        <inline-edit [(ngModel)]="mmModel.mm" (onSave)="saveEditable($event)"></inline-edit>
+                    </td>
+                    <td *ngIf="mmMergeListModel.mergeManpowerMmModels[mmMergeListModel.mergeManpowerMmModels.length-1].month == mmModel.month">
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true" (click)="deleteData(mmModel)"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary btn-block" (click)="onSave()">변경</button>
     </div>
 </div>

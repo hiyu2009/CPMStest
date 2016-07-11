@@ -13,7 +13,7 @@
       <tr>
         <th *ngFor="let header of tableHeaders">{{header}}</th>
       </tr>
-      <tr *ngIf="tableRowModels.length > 0" *ngFor="let rowModel of tableRowModels | async" (click)="onRowClick(rowModel)">
+      <tr *ngFor="let rowModel of tableRowModels | async" (click)="onRowClick(rowModel)">
         <td>{{rowModel.projectName}}</td>
         <td>{{rowModel.partnerName}}</td>
         <td>{{rowModel.contractAmount  | currency:'KRW':true}} </td>
@@ -22,8 +22,9 @@
         <td>{{rowModel.startDate}}</td>
         <td>{{rowModel.endDate}}</td>
       </tr>
-      <tr *ngIf="tableRowModels.length <= 0">
-        <td rowspan="7">등록된 프로젝트 리스트가 없습니다.</td>
+      <!--<tr *ngIf="tableRowModels.length < 1">-->
+      <tr *ngIf="tableRowCount <= 0">
+        <td colspan="7">등록된 프로젝트 리스트가 없습니다.</td>
       </tr>
     </table>
   </div>

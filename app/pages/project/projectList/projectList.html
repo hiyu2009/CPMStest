@@ -4,7 +4,7 @@
         <div class="container">
             <div class="col-xs-1 col-sm-1 col-md-2">
                 <select class="form-control" [(ngModel)]="deptSelect.deptCode">
-                    <option value="0" disabled selected>부서</option>
+                    <option value="0" selected>부서</option>
                     <option *ngFor="let deptModel of deptCodeModels" [value]="deptModel.deptCode">
                         {{deptModel.deptName}}
                     </option>
@@ -12,13 +12,12 @@
             </div>
             <div class="col-xs-1 col-sm-1 col-md-2">
                 <select class="form-control" [(ngModel)]="selectFilter">
-                    <option rvalue=0 disabled selected>구분</option>
+                    <option rvalue=0 selected>구분</option>
                     <option [value]=1>프로젝트명</option>
                     <option [value]=2>매출처</option>
                 </select>
             </div>
-            <project-list-table [table-headers]="tableHeaders" [table-rowModels]="data"
-                                (searchEvent)="searchData($event, deptSelect, selectFilter)"></project-list-table>
+            <project-list-table [table-headers]="tableHeaders" [table-rowModels]="data" [rowCount]="rowCnt" (searchEvent)="searchData($event, deptSelect, selectFilter)"></project-list-table>
         </div>
     </div>
 </wrapper>

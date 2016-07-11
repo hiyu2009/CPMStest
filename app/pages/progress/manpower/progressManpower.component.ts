@@ -26,7 +26,7 @@ export class ProgressManpwer implements OnInit {
 
     private pjtListModels:ProjectModel[];                    //현재 사용자의 부서의 프로젝트 목록을 가져온다.
     private selPjtModel:ProjectModel;                        //프로젝트 목록에서 선택 후 조회한 프로젝트의 ID를 저장
-    private manpowerListModels:ManpowerModel[];              //선택한 프로젝트의 인력의 목록을 저장
+    private manpowerListModels:ManpowerModel[];                //선택한 프로젝트의 인력의 목록을 저장
     private ratingListModels: RatingCodeModel[];             //개발등급목록
     private addManpowerModel: ManpowerModel;                 //추가 인력목록
     private modifyManpowerModel: ModifyManpowerModel;        //인력목록 리스트, 삭제리스트

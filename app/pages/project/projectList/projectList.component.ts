@@ -28,6 +28,7 @@ export class ProjectList implements OnInit {
     private selectFilter:any;
     private searchValue:string = "";
     private searchModel:SelectListModel;
+    private rowCnt: number;
 
     constructor(private loginService:LoginService,
                 private pjtListService:ProjectListService) {
@@ -36,7 +37,8 @@ export class ProjectList implements OnInit {
         this.deptCodeModels = [];
         this.pjtListModels = [];
         this.selectFilter = 0;
-        
+        this.rowCnt = 0;
+
         this.deptSelect.deptCode = "0";
         this.data = new Observable(observer => this.dataObserver = observer);
     }
@@ -49,16 +51,9 @@ export class ProjectList implements OnInit {
 
             this.pjtListService.getList(this.searchModel).subscribe(
                 data => {
-                    console.log("return data check : ");
-                    console.log(data);
-
                     this.pjtListModels = data;
-                    console.log("pjtListModel <- data : ");
-                    console.log(this.pjtListModels);
-
                     this.dataObserver.next(this.pjtListModels);
-                    console.log("data insert success! ");
-                    console.log(this.dataObserver);
+                    this.rowCnt = this.pjtListModels.length;
                 }, error => {
                     console.log(error);
                     alert("데이터를 조회 할 수 없습니다!");
@@ -127,6 +122,8 @@ export class ProjectList implements OnInit {
                 //dataObserver에 조회된 데이터를 반영해서 테이블을 리로드한다.
                 this.pjtListModels = data;
                 this.dataObserver.next(this.pjtListModels);
+                console.log(this.pjtListModels.length);
+                this.rowCnt = this.pjtListModels.length;
             }, error => {
                 console.log(error);
                 this.pjtListModels = [];
