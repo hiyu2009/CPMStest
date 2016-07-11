@@ -11,6 +11,7 @@ import {CommonModelService} from "../../../common/services/commonModel.services"
 import {ModifyManpowerModel} from "./models/modifyManpower.model";
 import {SelectPartnerNameList} from "./models/selectPartnerName.model";
 import {ResultModel} from "../../../common/models/result.model";
+import * as moment_ from 'moment';
 
 @Component({
     selector: 'progress-manpwer',
@@ -21,6 +22,7 @@ import {ResultModel} from "../../../common/models/result.model";
 export class ProgressManpwer implements OnInit {
     @ViewChild('modal')
     private modal: ModalComponent;
+    private moment: moment.MomentStatic = (<any>moment_)['default'] || moment_;
 
     private pjtListModels:ProjectModel[];                    //현재 사용자의 부서의 프로젝트 목록을 가져온다.
     private selPjtModel:ProjectModel;                        //프로젝트 목록에서 선택 후 조회한 프로젝트의 ID를 저장
@@ -30,6 +32,9 @@ export class ProgressManpwer implements OnInit {
     private modifyManpowerModel: ModifyManpowerModel;        //인력목록 리스트, 삭제리스트
     private partnerNameListModel: SelectPartnerNameList[];   //사업자 이름 목록 리스트
     private resultModel: ResultModel;                        //결과모델
+
+    private addStartDate: Date;
+    private addEndDate: Date;
 
     constructor(private  service:ProgressManpowerService,
                 private  modifyService:ModifyOutsourcingService,
@@ -42,6 +47,8 @@ export class ProgressManpwer implements OnInit {
         this.addManpowerModel = new ManpowerModel();
         this.modifyManpowerModel = new ModifyManpowerModel();
         this.resultModel = new ResultModel();
+        // this.addManpowerModel.startDate = new Date();
+        // this.addManpowerModel.endDate = new Date();
     }
 
     ngOnInit() {
@@ -99,17 +106,50 @@ export class ProgressManpwer implements OnInit {
 
     }
 
-    saveEditable(value){
+    saveEditable(value, key, model: ManpowerModel){
+        switch (key){
+            case 1:
+                model.manpowerName = value;
+                break;
+            case 2:
+                model.sellingAmount = value;
+                break;
+            case 3:
+                model.outsourcingAmount = value;
+                break;
+        }
     }
 
     closeed(){
         this.addManpowerModel.projectId = this.selPjtModel.projectId;
+
+        console.log(this.addEndDate);
+        console.log("add Start Date : " + this.addManpowerModel.startDate);
+        console.log("add End Date : " + this.addManpowerModel.endDate);
+
         this.modifyManpowerModel.mergeManpowerModels.push(this.addManpowerModel);
+        console.log("mergeManpower: ", this.modifyManpowerModel.mergeManpowerModels);
+
+        // this.modifyManpowerModel.mergeManpowerModels[this.modifyManpowerModel.mergeManpowerModels.indexOf(this.addManpowerModel)].startDate = this.addStartDate;
+        // this.modifyManpowerModel.mergeManpowerModels[this.modifyManpowerModel.mergeManpowerModels.indexOf(this.addManpowerModel)].endDate = this.addEndDate;
+        // console.log("date insert", this.modifyManpowerModel.mergeManpowerModels[this.modifyManpowerModel.mergeManpowerModels.indexOf(this.addManpowerModel)]);
 
         this.addManpowerModel = new ManpowerModel();
     }
 
     open() {
         this.modal.open();
+    }
+
+    startDateChange(value){
+        this.addManpowerModel.startDate = value;
+        console.log(this.addManpowerModel.startDate);
+        console.log("date cheange!!!", value);
+    }
+
+    endDateChange(value){
+        this.addManpowerModel.endDate = value;
+        console.log(this.addManpowerModel.endDate);
+        console.log("date cheange!!!", value);
     }
 }

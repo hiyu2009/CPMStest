@@ -36,7 +36,7 @@
             <tbody>
                 <tr *ngFor="let manpowerModel of modifyManpowerModel.mergeManpowerModels">
                     <td>
-                        <inline-edit [(ngModel)]="manpowerModel.manpowerName" (onSave)="saveEditable($event)"></inline-edit>
+                        <p>{{manpowerModel.manpowerName}}</p>
                     </td>
                     <td>
                         <select class="form-control" [(ngModel)]="manpowerModel.ratingCode" required>
@@ -54,16 +54,16 @@
                         </select>
                     </td>
                     <td>
-                        <inline-edit [(ngModel)]="manpowerModel.sellingAmount" (onSave)="saveEditable($event)"></inline-edit>
+                        <inline-edit [(ngModel)]="manpowerModel.sellingAmount" (onSave)="saveEditable($event, 2, manpowerModel)"></inline-edit>
                     </td>
                     <td>
-                        <inline-edit [(ngModel)]="manpowerModel.outsourcingAmount" (onSave)="saveEditable($event)"></inline-edit>
+                        <inline-edit [(ngModel)]="manpowerModel.outsourcingAmount" (onSave)="saveEditable($event, 3, manpowerModel)"></inline-edit>
                     </td>
                     <td>
-                        <datepicker [(ngModel)]="manpowerModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" ></datepicker>
+                        <datepicker [(ngModel)]="manpowerModel.startDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
                     </td>
                     <td>
-                        <datepicker [(ngModel)]="manpowerModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" ></datepicker>
+                        <datepicker [(ngModel)]="manpowerModel.endDate" view-format="YYYY-MM-DD" model-format="YYYY-MM-DD" init-date=""></datepicker>
                     </td>
                     <td class="center">
                         <span class="glyphicon glyphicon-minus" aria-hidden="true" (click)="deleteData(manpowerModel)"></span>
@@ -71,7 +71,7 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-block btn-primary pull-right" (click)="onSaveData()">저장</button>
+        <button class="btn btn-block btn-primary pull-right" (click)="onSaveData()">변경</button>
     </div>
 </div>
 

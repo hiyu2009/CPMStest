@@ -11,7 +11,7 @@ import {userList} from './pages/admin/userList/userList.component';
 import {ProgressRoutes} from "./pages/progress/route/progress.routes";
 
 export const routes:RouterConfig = [
-    {path: '', redirectTo: '/home', terminal: true},
+    {path: '', redirectTo: '/login', terminal: true},
     {path: 'login', component: Login},
     {path: 'home', component: Home},
     {path: 'admin/insertUser', component: UserAdd},

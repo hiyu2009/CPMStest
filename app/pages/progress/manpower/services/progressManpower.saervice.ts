@@ -20,7 +20,7 @@ export class ProgressManpowerService {
     }
 
     //선택한 프로젝트의 인력 목록을 가져옴
-    getManpowerList(pjtModel: ProjectModel) {
+    getManpowerList(pjtModel) {
         let url = this.SERVER_DOMAIN + "progress/selectManpowerList";
 
         let header = new Headers();

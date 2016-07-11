@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>외주인력 MM 관리</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <select class="form-control" [ngModel]="selDataModel.projectId" (change) = "onSearchManpower($event.target.value)">
+                <option value=0 [disabled]="true" [selected]="true">프로젝트 목록</option>
+                <option *ngFor="let listModel of pjtListModels" [value]="listModel.projectId" >
+                    {{listModel.projectName}}
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-5">
+            <select class="form-control" [ngModel]="selDataModel.manpowerName">
+                <option value="" [disabled]="true" [selected]="true">인력목록</option>
+                <option *ngFor="let listModel of manpowerListModels" [value]="listModel.projectId">
+                    {{listModel.manpowerName}}
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-block btn-default" (click)="onSearch()">조회</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="toggleSearch">
+        <h4>프로젝트 명: <small>{{selPjtInfo.projectModel.projectName}}</small></h4>
+        <p><strong>시작일: </strong> {{selPjtInfo.projectModel.startDate}}<strong> 종료일: </strong>{{selPjtInfo.projectModel.endDate}}</p>
+        <p><strong>투입인력: </strong>{{selManpowerInfo.manpowerName}}<strong> 계약단가: </strong>{{selManpowerInfo.outsourcingAmount}}<strong> 투입기간: </strong>{{selManpowerInfo.startDate}}~{{selManpowerInfo.endDate}}</p>
+    </div>
+    <div class="row">
+
+    </div>
+</div>
